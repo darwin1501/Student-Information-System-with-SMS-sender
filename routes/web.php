@@ -3,6 +3,7 @@
 use App\Http\Controllers\Auth\LoginController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MessageController;
+use App\Http\Controllers\UsersController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,3 +19,7 @@ use App\Http\Controllers\MessageController;
 Route::get('/', [LoginController::class, 'loginPage']);
 
 Route::get('/send', [MessageController::class, 'sendSMS']);
+
+Route::get('/create', [UsersController::class, 'createUser']);
+
+Route::post('/login', [LoginController::class, 'verifyUser']);
