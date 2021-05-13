@@ -13,21 +13,16 @@ class LoginController extends Controller
         return view('auth.login');
     }
 
-    public function verifyUser(Request $request){
-        // return 'request success';
-        $email = $request->json('email');
-        $password = $request->json('password');
-
-        return $email.' '.$password;
-        
+    public function verifyUser(Request $request)
+    {
         //sign in the user
-        // if (Auth::attempt($request->only('email', 'password')))
-        //  {
-        //      //success
-        //     //redirect on dashboard
-        //      return 'success';
-        //  }else{
-        //      return 'login failed';
-        //  }
+        if (Auth::attempt($request->only('email', 'password'))){
+             //success
+            //redirect on inside the system
+             return 'success'.auth()->user()->username;
+         }else{
+            //  failed
+             return 'login failed';
+         }
     }
 }

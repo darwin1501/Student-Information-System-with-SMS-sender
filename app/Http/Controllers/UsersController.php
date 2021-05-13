@@ -12,10 +12,10 @@ class UsersController extends Controller
     public function createUser(){
         $user = new User;
 
-        $user->username = 'admin';
-        $user->email = 'admin@email.com';
-        $user->password = Hash::make('admin');
-        $user->user_type = 'admin';
+        $user->username = 'user101';
+        $user->email = 'user@email.com';
+        $user->password = Hash::make('1234');
+        $user->user_type = 'user';
         $user->save();
     }
 }
