@@ -8,13 +8,13 @@
                 <form onsubmit="return login()" >
                     <div class="flex justify-center mb-4">
                         <input type="email" name="email"
-                            class="input"
-                            id="email" 
+                            class="input border-gray-400"
+                            id="email"
                             placeholder="email" required>
                     </div>
                     <div class="flex justify-center">
                         <input type="password" name="username" 
-                            class="input"
+                            class="input border-gray-400"
                             id="password"
                             placeholder="password" required>
                     </div>
