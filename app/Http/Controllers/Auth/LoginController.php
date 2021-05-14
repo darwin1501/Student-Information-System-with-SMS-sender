@@ -19,10 +19,12 @@ class LoginController extends Controller
         if (Auth::attempt($request->only('email', 'password'))){
              //success
             //redirect on inside the system
-             return 'success'.auth()->user()->username;
+            //  return 'success'.auth()->user()->username;
+            // return redirect('web.users.users');
+            return auth()->user()->user_type;
          }else{
             //  failed
-             return 'login failed';
+             return 'failed';
          }
     }
 }
