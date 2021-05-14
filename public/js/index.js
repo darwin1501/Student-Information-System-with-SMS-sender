@@ -1,8 +1,22 @@
 
+
+const email = document.getElementById('email');
+const password = document.getElementById('password');
+
+const removeError = () => {
+    const target = event.target || event.srcElement;
+    target.classList.remove('border-red-500');
+};
+
+// event listeners for inputs
+email.addEventListener('input', removeError);
+password.addEventListener('input', removeError);
+
+
 // authentication
 const login = (()=>{
-    const email = document.getElementById('email').value;
-    const password = document.getElementById('password').value;
+    const email = document.getElementById('email');
+    const password = document.getElementById('password');
     // Make a get request
         // axios.get('/login')
         // .then(function (response) {
@@ -19,7 +33,7 @@ const login = (()=>{
 
         // Make a post request ,
         //define the data on post
-        axios.post('/login', {email: email, password: password})
+        axios.post('/login', {email: email.value, password: password.value})
         .then(function (response) {
         // handle success request
             if(response.data === 'admin'){
@@ -28,7 +42,11 @@ const login = (()=>{
                 window.location = "/students";
             }else{
                 // login failed
-                console.log(response.data);
+                email.classList.add('border-red-500');
+                password.classList.add('border-red-500');
+                // border-gray-400
+                // console.log(response.data);
+                alert('login failed');
             }
         })
         .catch(function (error) {
