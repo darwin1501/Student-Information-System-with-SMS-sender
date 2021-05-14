@@ -1,9 +1,12 @@
 <?php
 
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\LogOutController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MessageController;
+use App\Http\Controllers\StudentsController;
 use App\Http\Controllers\UsersController;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,10 +19,13 @@ use App\Http\Controllers\UsersController;
 |
 */
 
-Route::get('/', [LoginController::class, 'loginPage']);
+Route::get('/', [LoginController::class, 'loginPage'])->name('loginPage');
 
 Route::get('/send', [MessageController::class, 'sendSMS']);
 
-Route::get('/create', [UsersController::class, 'createUser']);
+Route::get('/users', [UsersController::class, 'getUsers'])->middleware('checkPermission');
+Route::get('/students', [StudentsController::class, 'getStudents']);
 
-Route::post('/login', [LoginController::class, 'verifyUser']);
+Route::post('/login', [LoginController::class, 'verifyUser'])->name('login');
+
+Route::get('/logout', [LogOutController::class, 'logOut'])->name('logout');
