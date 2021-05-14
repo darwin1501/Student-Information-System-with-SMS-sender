@@ -21,8 +21,15 @@ const login = (()=>{
         //define the data on post
         axios.post('/login', {email: email, password: password})
         .then(function (response) {
-        // handle success
-        console.log(response);
+        // handle success request
+            if(response.data === 'admin'){
+                window.location = "/users";
+            }else if(response.data === 'user'){
+                window.location = "/students";
+            }else{
+                // login failed
+                console.log(response.data);
+            }
         })
         .catch(function (error) {
         // handle error
