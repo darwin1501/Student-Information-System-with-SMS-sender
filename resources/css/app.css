@@ -3,5 +3,5 @@
 @tailwind utilities;
 
 .input{
-    @apply p-4 border-4 border-gray-400 text-center w-3/4 rounded-lg;
+    @apply p-4 border-4 text-center w-3/4 rounded-lg;
 }
