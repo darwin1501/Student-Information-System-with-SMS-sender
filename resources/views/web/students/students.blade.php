@@ -1,4 +1,8 @@
 @extends('layout.verified')
 @section('content')
-    <p>this is Students</p>
+    
+@endsection
+
+@section('jsLogic')
+<script src="{{ asset('js/students.js') }}"></script>
 @endsection

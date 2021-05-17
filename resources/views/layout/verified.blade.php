@@ -21,10 +21,11 @@
 <body class="bg-gray-200">
     @include('include.header')
     @include('include.sidenav')
-    {{-- side nav menu icon --}}
-    <span class="sidenav-icon" onclick="openNav()">&#9776;</span>
     @yield('content')
 </body>
 <script src="{{ asset('js/app.js') }}"></script>
-<script src="{{ asset('js/index.js') }}"></script>
+{{-- js for static components --}}
+<script src="{{ asset('js/components.js') }}"></script>
+{{-- dynamic js logic --}}
+@yield('jsLogic')
 </html>
