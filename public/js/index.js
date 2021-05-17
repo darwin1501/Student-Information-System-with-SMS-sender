@@ -1,4 +1,12 @@
 
+// side nav interaction
+const openNav = (()=>{
+    document.getElementById("mySidenav").style.width = "250px";
+})
+
+const closeNav = (()=>{
+    document.getElementById("mySidenav").style.width = "0";
+})
 
 const email = document.getElementById('email');
 const password = document.getElementById('password');
