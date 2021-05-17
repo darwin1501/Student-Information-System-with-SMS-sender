@@ -1,4 +1,4 @@
 @extends('layout.verified')
-@section('main-content')
+@section('content')
     <p>this is Students</p>
 @endsection
