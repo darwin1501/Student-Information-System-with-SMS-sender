@@ -23,8 +23,15 @@ Route::get('/', [LoginController::class, 'loginPage'])->name('loginPage');
 
 Route::get('/send', [MessageController::class, 'sendSMS']);
 
-Route::get('/users', [UsersController::class, 'getUsers'])->middleware(['auth','checkPermission']);
-Route::get('/students', [StudentsController::class, 'getStudents'])->middleware('auth');
+// Route::get('/create', [UsersController::class, 'createUser']);
+
+Route::get('/users', [UsersController::class, 'usersPage'])
+->name('users')
+->middleware(['auth','checkPermission']);
+Route::get('/userlist', [UsersController::class, 'getAllUsers']);
+
+Route::get('/students', [StudentsController::class, 'getStudents'])->middleware('auth')
+->name('students');
 
 Route::post('/login', [LoginController::class, 'verifyUser'])->name('login');
 
