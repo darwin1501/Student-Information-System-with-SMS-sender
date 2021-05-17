@@ -10,7 +10,7 @@ class LoginController extends Controller
 {
     public function loginPage()
     {
-        return view('auth.login');
+        return view('auth.login_form');
     }
 
     public function verifyUser(Request $request)
