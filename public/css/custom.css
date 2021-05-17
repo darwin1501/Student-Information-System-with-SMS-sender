@@ -1,5 +1,12 @@
 
-/* dropdown */
+/* links */
+.active{
+  background-color: rgb(68, 149, 231) !important;
+  color:white !important;
+  /* border-color: red !important; */
+}
+
+/* dropdown at header */
 /* Style The Dropdown Button */
 .dropbtn {
      padding-right: 15px;
@@ -100,3 +107,39 @@
     .sidenav {padding-top: 15px;}
     .sidenav a {font-size: 18px;}
   }
+
+  /* dropdown at table */
+
+  /* Dropdown*/
+.option-btn {
+  /* background-image: url('../svg/setting.svg'); */
+  object-fit: contain;
+  padding: 15px 0 10px 35px;
+  margin-top: 5px;
+  margin-left: 15px;
+  background-repeat: no-repeat;
+  border: none;
+  z-index: 2;
+  position: relative;
+}
+.option-dropdown {
+  position: relative;
+  display: inline-block;
+}
+.option-dropdown-content {
+  display: none !important;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 100%;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+  margin-left: 40px;
+  margin-top: -40px;
+  padding: 20px;
+}
+.option-dropdown-content button {
+  padding: 5px 5px;
+  display: block;
+}
+
+.option-dropdown:hover .option-dropdown-content {display: block !important;}
