@@ -10,12 +10,12 @@ const paginationButtons = ((pagination)=>{
 
        if(link.active === true){
 
-         buttonTemplate = `<button class='p-4 border-2 border-gray-300 active' onclick='navigatePagination("${link.url}")'>
+         buttonTemplate = `<button class='p-2 text-xs border-2 border-gray-300 active' onclick='navigatePagination("${link.url}")'>
                                 ${link.label}
                             </button>
                             `;
        }else{
-        buttonTemplate = `<button class='p-4 border-2 border-gray-300' onclick='navigatePagination("${link.url}")'>
+        buttonTemplate = `<button class='p-2 text-xs border-2 border-gray-300' onclick='navigatePagination("${link.url}")'>
                                 ${link.label}
                           </button>
                           `;
@@ -35,22 +35,19 @@ const generateTable = ((users)=>{
             // new date format
             const D = new Date(dateString);
             const tableRow = `
-                <tr id=${user.id}>
-                    <td class="border-2 border-gray-400 p-2"><button class="link" onclick="profileModal()" value=${user.id}>${user.username}</button></td>
-                    <td class="border-2 border-gray-400 p-2">${user.email}</td>
-                    <td class="border-2 border-gray-400 p-2">${("0"+D.getDate()).slice(-2)}/${("0"+(D.getMonth()+1)).slice(-2)}/${D.getFullYear()}</td>
-                    <td class="border-2 border-gray-400 p-2">
+                <tr class="table-content" id=${user.id}>
+                    <td class=" p-2"><button class="link" onclick="profileModal()" value=${user.id}>${user.username}</button></td>
+                    <td class=" p-2">${user.email}</td>
+                    <td class=" p-2">${("0"+D.getDate()).slice(-2)}/${("0"+(D.getMonth()+1)).slice(-2)}/${D.getFullYear()}</td>
+                    <td class=" p-2">
                         <div class="option-dropdown">
                         <div class="option-btn" style="background-image: url('/svg/setting.svg')"></div>
                         <div class="option-dropdown-content">
-                            <button class="hover:bg-gray-300 w-full p4 btn-edit" onclick="addOrderModal()" value=${user.id}>
-                                Add Order
-                            </button>
-                            <button class="hover:bg-gray-300 w-full p4 btn-edit" onclick="editUserModal()" value=${user.id}>
+                            <button class="hover:bg-gray-300 w-full p2 btn-edit" onclick="editUserModal()" value=${user.id}>
                                 edit
                             </button>
                             <form onsubmit='return deleteUser(${user.id})'>
-                                <button class="hover:bg-gray-300 w-full p4 btn-delete">
+                                <button class="hover:bg-gray-300 w-full p2 btn-delete">
                                     delete
                                 </button>
                             </form>

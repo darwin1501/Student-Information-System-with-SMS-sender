@@ -18,7 +18,7 @@ class UsersController extends Controller
 
     public function getAllUsers()
     {
-        $users = User::where('user_type', 'user')->latest()->paginate(2);
+        $users = User::where('user_type', 'user')->latest()->paginate(4);
         return $users;
     }
 

@@ -6,6 +6,19 @@
   /* border-color: red !important; */
 }
 
+/* table zebra stripes */
+/* tr:nth-child(even){
+  background-color: #D1D5DB;
+}
+tr:nth-child(odd){
+  background-color: #E5E7EB;
+} */
+.table-content:nth-child(even){
+  background-color: #D1D5DB;
+}
+.table-content:nth-child(odd){
+  background-color: #E5E7EB;
+}
 /* dropdown at header */
 /* Style The Dropdown Button */
 .dropbtn {
@@ -135,7 +148,7 @@
   z-index: 1;
   margin-left: 40px;
   margin-top: -40px;
-  padding: 20px;
+  padding: 10px;
 }
 .option-dropdown-content button {
   padding: 5px 5px;

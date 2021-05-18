@@ -1,4 +1,4 @@
-<div class="w-full p-6 bg-blue-400 text-white">
+<div class="w-full p-4 bg-blue-400 text-white">
     <div class="flex">
         <p>{{$header}}</p>
         <div class="ml-auto">
