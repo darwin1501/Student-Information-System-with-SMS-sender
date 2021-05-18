@@ -27,10 +27,10 @@ Route::get('/send', [MessageController::class, 'sendSMS']);
 
 Route::get('/users', [UsersController::class, 'usersPage'])
 ->name('users')
-->middleware(['auth','checkPermission']);
-Route::get('/userlist', [UsersController::class, 'getAllUsers']);
+->middleware(['auth', 'checkPermission']);
+Route::get('/userlist', [UsersController::class, 'getAllUsers'])->middleware('checkStatus','checkPermission');
 
-Route::get('/students', [StudentsController::class, 'getStudents'])->middleware('auth')
+Route::get('/students', [StudentsController::class, 'getStudents'])->middleware(['auth', 'checkStatus'])
 ->name('students');
 
 Route::post('/login', [LoginController::class, 'verifyUser'])->name('login');
