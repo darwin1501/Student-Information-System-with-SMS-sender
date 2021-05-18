@@ -1,9 +1,13 @@
 @extends('layout.verified')
 @section('content')
-<div class="flex justify-center">
+<div class="flex justify-center z-0">
     <div class="card w-2/4 bg-white shadow-lg p-6 rounded-lg">
         <div class="flex justify-center">
             <input type="text" id="searchName" class="p-1 w-2/3 border-b-2 border-gray-400 text-center text-xs" placeholder="Search Name">
+            <button onclick="showModal()"
+            class="ml-auto py-1 px-3 text-center text-sm text-white rounded-full bg-blue-400">
+                +&nbsp;Students
+            <button>
         </div>
         <div class="flex justify-center mt-5">
             <p id="noResult" class="hidden">No Results Found</p>
@@ -28,6 +32,7 @@
         </div>
     </div>
 </div>
+@include('include.modals.users.add_user')
 @endsection
 
 @section('jsLogic')

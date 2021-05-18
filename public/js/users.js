@@ -43,12 +43,15 @@ const generateTable = ((users)=>{
                         <div class="option-dropdown">
                         <div class="option-btn" style="background-image: url('/svg/setting.svg')"></div>
                         <div class="option-dropdown-content">
+                            <button class="hover:bg-gray-300 w-full p2 btn-edit" value=${user.id}>
+                                Block
+                            </button>
                             <button class="hover:bg-gray-300 w-full p2 btn-edit" onclick="editUserModal()" value=${user.id}>
-                                edit
+                                Edit
                             </button>
                             <form onsubmit='return deleteUser(${user.id})'>
                                 <button class="hover:bg-gray-300 w-full p2 btn-delete">
-                                    delete
+                                    Delete
                                 </button>
                             </form>
                         </div>
@@ -94,3 +97,16 @@ const getUsers = async (url = '/userlist')=>{
         });
 }
 getUsers();
+
+// modals
+const addUserModal = document.getElementById('addUserModal');
+
+const showModal = ()=>{
+    addUserModal.classList.remove('hidden');
+    addUserModal.classList.add('bg-gray-500', 'bg-opacity-70');
+};
+
+const closeModal = ()=>{
+    addUserModal.classList.add('hidden');
+    addUserModal.classList.remove('bg-gray-500', 'bg-opacity-70');
+};

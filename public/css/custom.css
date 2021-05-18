@@ -1,4 +1,9 @@
-
+/* buttons */
+.close-btn{
+  top: 0;
+  right: 0;
+  position: absolute;
+}
 /* links */
 .active{
   background-color: rgb(68, 149, 231) !important;
