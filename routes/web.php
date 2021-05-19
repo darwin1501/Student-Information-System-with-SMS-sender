@@ -29,6 +29,7 @@ Route::get('/users', [UsersController::class, 'usersPage'])
 ->name('users')
 ->middleware(['auth', 'checkPermission']);
 Route::get('/userlist', [UsersController::class, 'getAllUsers'])->middleware('checkStatus','checkPermission');
+Route::post('/createuser', [UsersController::class, 'createUser']);
 
 Route::get('/students', [StudentsController::class, 'getStudents'])->middleware(['auth', 'checkStatus'])
 ->name('students');

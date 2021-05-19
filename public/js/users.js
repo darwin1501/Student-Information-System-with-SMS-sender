@@ -30,15 +30,25 @@ const generateTable = ((users)=>{
     // remove old data on tables
     usersTable.innerHTML = "";
         for (const user of users) {
+            let accountStatus;
+
+            //
+            if(user.status === 1){
+                accountStatus = `<td class="text-white"><p class="bg-green-500 p-1 rounded-lg text-xs">active</p></td>`;
+            }else if(user.status === 0){
+                accountStatus = `<td class="text-white"><p class="bg-red-500 p-1 rounded-lg text-xs">blocked</p></td>`;;
+            }
+
             // format date
             const dateString = user.created_at;
             // new date format
             const D = new Date(dateString);
             const tableRow = `
                 <tr class="table-content" id=${user.id}>
-                    <td class=" p-2"><button class="link" onclick="profileModal()" value=${user.id}>${user.username}</button></td>
-                    <td class=" p-2">${user.email}</td>
-                    <td class=" p-2">${("0"+D.getDate()).slice(-2)}/${("0"+(D.getMonth()+1)).slice(-2)}/${D.getFullYear()}</td>
+                    <td class="p-2"><button class="link" onclick="profileModal()" value=${user.id}>${user.username}</button></td>
+                    <td class="p-2">${user.email}</td>
+                    <td class="p-2">${("0"+D.getDate()).slice(-2)}/${("0"+(D.getMonth()+1)).slice(-2)}/${D.getFullYear()}</td>
+                    ${accountStatus}
                     <td class=" p-2">
                         <div class="option-dropdown">
                         <div class="option-btn" style="background-image: url('/svg/setting.svg')"></div>
@@ -110,3 +120,37 @@ const closeModal = ()=>{
     addUserModal.classList.add('hidden');
     addUserModal.classList.remove('bg-gray-500', 'bg-opacity-70');
 };
+
+const addUser = (()=>{
+    const email = document.getElementById('email').value;
+    const username = document.getElementById('username').value;
+    const password = document.getElementById('password').value;
+    const confirmPassword = document.getElementById('confirm-password');
+
+    // console.log(`${username}, ${email}, ${password}, ${confirmPassword}`);
+
+    // validate password
+    if(password !== confirmPassword.value){
+        confirmPassword.setCustomValidity("Passwords Don't Match");
+    }else{
+        // password matched
+
+        // remove custom message
+        confirmPassword.setCustomValidity("");
+
+        // send request to sever;
+        axios.post('/createuser', {username: username, email: email, password: password})
+        .then(function (response) {
+            console.log(response.data);
+        })
+        .catch(function (error) {
+        // handle error
+        console.log(error);
+        })
+        .then(function () {
+        // always executed
+        });
+    }
+    // prevent the page from submitting
+    return false;
+})

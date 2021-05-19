@@ -22,12 +22,22 @@ class UsersController extends Controller
         return $users;
     }
 
-    // public function createUser(){
-    //     $user = new User;
-    //     $user->username = 'user105';
-    //     $user->email = 'user105@email.com';
-    //     $user->password = Hash::make('1234');
-    //     $user->user_type = 'user';
-    //     $user->save();
-    // }
+    public function createUser(Request $request){
+        $username = $request->json('username');
+        // check username if already exists
+        $usernameDuplicate = User::select('username')
+                    ->where('username', $username);
+        // count existing username
+        return $usernameDuplicate->count();
+
+        // handle duplicate email error
+
+        // save to database
+        // $user = new User;
+        // $user->username = 'user105';
+        // $user->email = 'user105@email.com';
+        // $user->password = Hash::make('1234');
+        // $user->user_type = 'user';
+        // $user->save();
+    }
 }

@@ -9,20 +9,24 @@
                 <div class="input-container">
                     <form onsubmit="return addUser()" id="addUserForm">
                         <p id="nameErrMsg" class="text-center text-red-500"></p>
-                        <input type="text" name="name" id="name" 
+
+                        <input type="text" name="name" id="username" 
                             class="border-2 border-gray-300 user-inputs mb-2 p-2 w-full bg-gray-200 rounded-lg text-center text-sm" 
-                            placeholder="username">
+                            placeholder="username" required>
+
                         <p id="emailErrMsg" class="text-center text-red-500"></p>
-                        <p id="invalidEmail" class="text-center hidden text-red-500">Invalid Email</p>
                         <input type="email" name="email" id="email" 
                             class="border-2 addUserForm border-gray-300 user-inputs mb-2 p-2 w-full bg-gray-200 rounded-lg text-center text-sm" 
-                            placeholder="email">
+                            placeholder="email" required>
+
                             <input type="password" name="password" id="password" 
                             class="border-2 border-gray-300 user-inputs mt-4 mb-2 p-2 w-full bg-gray-200 rounded-lg text-center text-sm" 
-                            placeholder="password">
+                            minlength="8" placeholder="password" required>
+
                             <input type="password" name="confirm_password" id="confirm-password" 
                             class="border-2 border-gray-300 user-inputs mb-4 p-2 w-full bg-gray-200 rounded-lg text-center text-sm" 
-                            placeholder="confirm password">
+                            minlength="8" placeholder="confirm password" required>
+
                         <button class="w-full bg-blue-400 rounded-lg text-white text-center text-sm p-2 pr-2 pl-2">Add</button>
                     </form>
                 </div>

@@ -5,7 +5,7 @@
         <div class="flex justify-center">
             <input type="text" id="searchName" class="p-1 w-2/3 border-b-2 border-gray-400 text-center text-xs" placeholder="Search Name">
             <button onclick="showModal()"
-            class="ml-auto py-1 px-3 text-center text-sm text-white rounded-full bg-blue-400">
+            class="ml-auto py-1 px-3 text-center text-xs text-white rounded-full bg-blue-400">
                 +&nbsp;Students
             <button>
         </div>
@@ -13,11 +13,12 @@
             <p id="noResult" class="hidden">No Results Found</p>
             <table id="table" class=" font-sans table-auto p-2 text-xs w-full text-center">
                 <thead>
-                    <tr class="p-2 bg-gray-300 text-opacity-5">
-                        <th class="p-2">Name</th>
-                        <th class="p-2">Email</th>
-                        <th class="p-2">Created At</th>
-                        <th class="p-2">Options</th>
+                    <tr class="p-2 bg-gray-300">
+                        <th class="p-2 text-gray-700">Name</th>
+                        <th class="p-2 text-gray-700">Email</th>
+                        <th class="p-2 text-gray-700">Created At</th>
+                        <th class="p-2 text-gray-700">Status</th>
+                        <th class="p-2 text-gray-700">Options</th>
                     </tr>
                 </thead>
                 <tbody id="usersTable" ">
