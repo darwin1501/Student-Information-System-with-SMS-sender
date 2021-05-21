@@ -18,10 +18,12 @@ use Illuminate\Support\Facades\Auth;
 | contains the "web" middleware group. Now create something great!
 |
 */
+// test route
+// Route::get('/create', [UsersController::class, 'testCreate']);
 
 Route::get('/', [LoginController::class, 'loginPage'])->name('loginPage');
 
-Route::get('/send', [MessageController::class, 'sendSMS']);
+// Route::get('/send', [MessageController::class, 'sendSMS']);
 
 // Route::get('/create', [UsersController::class, 'createUser']);
 
