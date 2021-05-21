@@ -121,6 +121,15 @@ const closeModal = ()=>{
     addUserModal.classList.remove('bg-gray-500', 'bg-opacity-70');
 };
 
+const checkError = ((response)=>{
+    if (response.status === 422) {
+        // return response.json();
+        console.log(response.json())
+      } else {
+        throw Error(response.statusText);
+      }
+})
+
 const addUser = (()=>{
     const email = document.getElementById('email').value;
     const username = document.getElementById('username').value;
@@ -141,11 +150,12 @@ const addUser = (()=>{
         // send request to sever;
         axios.post('/createuser', {username: username, email: email, password: password})
         .then(function (response) {
-            console.log(response.data);
+            // console.log(response.data);
         })
         .catch(function (error) {
         // handle error
-        console.log(error);
+        // get error message from xhr error
+        console.log(error.response.data.errors.username);
         })
         .then(function () {
         // always executed
