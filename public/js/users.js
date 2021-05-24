@@ -1,5 +1,16 @@
 
 
+const removeError =(()=>{
+    const target = event.target || event.srcElement;
+    // console.log(target.id);
+    document.getElementById(`${target.id}ErrMsg`).innerHTML = "";
+}) 
+
+// event listeners
+document.getElementById('username').addEventListener('input', removeError);
+document.getElementById('email').addEventListener('input', removeError);
+
+
 // generate pagination buttons
 const paginationButtons = ((pagination)=>{
     const paginationLinks = document.getElementById('paginationLinks');
@@ -155,7 +166,22 @@ const addUser = (()=>{
         .catch(function (error) {
         // handle error
         // get error message from xhr error
-        console.log(error.response.data.errors.username);
+        const validationError = error.response.data.errors;
+        //loop errors
+        // extract keys with array on objects
+            for (let e in validationError) {
+                if (validationError.hasOwnProperty(e)) {
+                    //check if errors was email or username
+                    if(e === 'username'){
+                        document.getElementById('usernameErrMsg')
+                            .innerHTML = validationError.username[0];
+                        // console.log(validationError.username[0]);
+                    }else if(e === 'email'){
+                        document.getElementById('emailErrMsg')
+                            .innerHTML = validationError.email[0];
+                    }
+                }
+            }
         })
         .then(function () {
         // always executed
