@@ -2,11 +2,11 @@
 
 const removeError =(()=>{
     const target = event.target || event.srcElement;
-    // console.log(target.id);
+
     document.getElementById(`${target.id}ErrMsg`).innerHTML = "";
 }) 
 
-// event listeners
+// event listeners on username and email inputs
 document.getElementById('username').addEventListener('input', removeError);
 document.getElementById('email').addEventListener('input', removeError);
 

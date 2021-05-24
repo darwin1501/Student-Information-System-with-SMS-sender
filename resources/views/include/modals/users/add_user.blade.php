@@ -8,13 +8,13 @@
             <div class="flex justify-center mt-4">
                 <div class="input-container">
                     <form onsubmit="return addUser()" id="addUserForm">
-                        <p id="nameErrMsg" class="text-center text-red-500"></p>
+                        <p id="usernameErrMsg" class=" text-xs text-center text-red-500"></p>
 
                         <input type="text" name="name" id="username" 
                             class="border-2 border-gray-300 user-inputs mb-2 p-2 w-full bg-gray-200 rounded-lg text-center text-sm" 
                             placeholder="username" required>
 
-                        <p id="emailErrMsg" class="text-center text-red-500"></p>
+                        <p id="emailErrMsg" class=" text-xs text-center text-red-500"></p>
                         <input type="email" name="email" id="email" 
                             class="border-2 addUserForm border-gray-300 user-inputs mb-2 p-2 w-full bg-gray-200 rounded-lg text-center text-sm" 
                             placeholder="email" required>
