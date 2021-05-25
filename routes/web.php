@@ -30,6 +30,9 @@ Route::get('/', [LoginController::class, 'loginPage'])->name('loginPage');
 Route::get('/users', [UsersController::class, 'usersPage'])
 ->name('users')
 ->middleware(['auth', 'checkPermission']);
+Route::get('/block/{user}', [UsersController::class, 'blockUser']);
+Route::get('/unblock/{user}', [UsersController::class, 'unblockUser']);
+Route::delete('/deleteuser/{user}', [UsersController::class, 'deleteUser']);
 Route::get('/userlist', [UsersController::class, 'getAllUsers'])->middleware('checkStatus','checkPermission');
 Route::post('/createuser', [UsersController::class, 'createUser']);
 
