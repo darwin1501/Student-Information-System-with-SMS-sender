@@ -25,7 +25,10 @@
                 </tbody>
                 </table>
         </div>
-        {{-- this will use to reload the current page when updating data --}}
+        {{-- 
+            copy the current page url on pagination
+            this will use to reload the current page when updating/changing data 
+            --}}
         <input type="hidden" id="currentPageLink">
         <div class="flex justify-center mt-5 text-sm">
             <div class="pagination-links" id="paginationLinks">

@@ -1,10 +1,11 @@
-
+// reset current page link on reload
+document.getElementById('currentPageLink').value = '';
 
 const removeError =(()=>{
     const target = event.target || event.srcElement;
 
     document.getElementById(`${target.id}ErrMsg`).innerHTML = "";
-}) 
+});
 
 // event listeners on username and email inputs
 document.getElementById('username').addEventListener('input', removeError);
@@ -42,12 +43,22 @@ const generateTable = ((users)=>{
     usersTable.innerHTML = "";
         for (const user of users) {
             let accountStatus;
+            let blockControlBtn;
 
-            //
+            //check status value
+            // and load component according to status
             if(user.status === 1){
                 accountStatus = `<td class="text-white"><p class="bg-green-500 p-1 rounded-lg text-xs">active</p></td>`;
+                blockControlBtn = `
+                        <button class="hover:bg-gray-300 w-full p2 btn-edit" onclick="blockUser()" value=${user.id}>
+                            Block
+                         </button>`
             }else if(user.status === 0){
-                accountStatus = `<td class="text-white"><p class="bg-red-500 p-1 rounded-lg text-xs">blocked</p></td>`;;
+                accountStatus = `<td class="text-white"><p class="bg-red-500 p-1 rounded-lg text-xs">blocked</p></td>`;
+                blockControlBtn = `
+                        <button class="hover:bg-gray-300 w-full p2 btn-edit" onclick="unblockUser()" value=${user.id}>
+                            Unblock
+                         </button>`
             }
 
             // format date
@@ -64,13 +75,8 @@ const generateTable = ((users)=>{
                         <div class="option-dropdown">
                         <div class="option-btn" style="background-image: url('/svg/setting.svg')"></div>
                         <div class="option-dropdown-content">
-                            <button class="hover:bg-gray-300 w-full p2 btn-edit" value=${user.id}>
-                                Block
-                            </button>
-                            <button class="hover:bg-gray-300 w-full p2 btn-edit" onclick="editUserModal()" value=${user.id}>
-                                Edit
-                            </button>
-                            <form onsubmit='return deleteUser(${user.id})'>
+                            ${blockControlBtn}
+                            <form onsubmit="return deleteUser(${user.id})">
                                 <button class="hover:bg-gray-300 w-full p2 btn-delete">
                                     Delete
                                 </button>
@@ -90,11 +96,17 @@ const navigatePagination = ((url)=>{
 
     // check if url on button was not empty
     //then load thte url
-    if(!(url === 'null')){
+    if(!(url === 'null') || (url === '')){
+        // not empty
          // set new current page link
          currentPageLink.value = url; 
         //  pass url
-        getUsers(url);
+        // getUsers(url);
+        console.log(url)
+    }else{
+        // if empty
+        // getUsers();
+        console.log(url)
     }
 })
 // set default parameters on getUsers
@@ -161,7 +173,16 @@ const addUser = (()=>{
         // send request to sever;
         axios.post('/createuser', {username: username, email: email, password: password})
         .then(function (response) {
-            // console.log(response.data);
+            //successful request
+
+            // clear inputs
+            const inputsToBeCleared = document.getElementsByClassName('_clear-onsucess');
+            for (const input of inputsToBeCleared) {
+                input.value = "";
+            }
+
+            // reload the table
+            getUsers();
         })
         .catch(function (error) {
         // handle error
@@ -189,4 +210,84 @@ const addUser = (()=>{
     }
     // prevent the page from submitting
     return false;
+});
+
+const blockUser = (()=>{
+    const target = event.target || event.srcElement;
+
+    // console.log(target.value);
+    // load user details
+    // get url with user id for route model binding
+     axios.get(`/block/${target.value}`)
+        .then(function (response) {
+       
+        const currentPageLink = document.getElementById('currentPageLink').value;
+         // reload table
+        navigatePagination(currentPageLink);
+    
+        })
+        .catch(function (error) {
+        // handle error
+        console.log(error);
+        })
+        .then(function () {
+        // always executed
+        });
+
+    return false;
+});
+
+const unblockUser = (()=>{
+    // gain access to element properties
+    const target = event.target || event.srcElement;
+
+    // get url with user id for route model binding
+     axios.get(`/unblock/${target.value}`)
+        .then(function (response) {
+       
+        const currentPageLink = document.getElementById('currentPageLink').value;
+         // reload table
+        navigatePagination(currentPageLink);
+        })
+        .catch(function (error) {
+        // handle error
+        console.log(error);
+        })
+        .then(function () {
+        // always executed
+        });
+
+    return false;
+});
+
+const deleteUser = ((user)=>{
+ 
+    // const currentPageLink = document.getElementById('currentPageLink').value;
+    // console.log(currentPageLink);
+        // reload table
+        // navigatePagination(currentPageLink);
+        
+
+    const deleteConfirmation = confirm('Do you want to delete this?')
+    // gain access to element properties
+    if(deleteConfirmation === true){
+        // console.log(user)
+        // get url with user id for route model binding
+        axios.delete(`/deleteuser/${user}`)
+        .then(function (response) {
+        const currentPageLink = document.getElementById('currentPageLink').value;
+        // // reload table
+        navigatePagination(currentPageLink);
+        })
+        .catch(function (error) {
+        // handle error
+        console.log(error);
+        })
+        .then(function () {
+        // always executed
+        });
+        return false;
+    }
+
 })
+
