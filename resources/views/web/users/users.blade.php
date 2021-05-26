@@ -1,12 +1,13 @@
 @extends('layout.verified')
 @section('content')
 <div class="flex justify-center z-0">
-    <div class="card w-2/4 bg-white shadow-lg p-6 rounded-lg">
+    {{-- table card --}}
+    <div class="card w-3/4 bg-white shadow-lg p-6 rounded-lg">
         <div class="flex justify-center">
             <input type="text" id="searchName" class="p-1 w-2/3 border-b-2 border-gray-400 text-center text-xs" placeholder="Search Name">
             <button onclick="showModal()"
             class="ml-auto py-1 px-3 text-center text-xs text-white rounded-full bg-blue-400">
-                +&nbsp;Students
+                +&nbsp;User
             <button>
         </div>
         <div class="flex justify-center mt-5">
@@ -21,7 +22,7 @@
                         <th class="p-2 text-gray-700">Options</th>
                     </tr>
                 </thead>
-                <tbody id="usersTable" ">
+                <tbody id="usersTable">
                 </tbody>
                 </table>
         </div>
