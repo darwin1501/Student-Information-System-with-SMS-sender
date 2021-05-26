@@ -10,7 +10,6 @@
                 +&nbsp;User
             <button>
         </div>
-        <p id="no-result" class="hidden text-center text-sm">No Results Found</p>
         <div class="flex justify-center mt-5">
             <table id="table" class=" font-sans table-auto p-2 text-xs w-full text-center">
                 <thead>
@@ -26,12 +25,13 @@
                 </tbody>
                 </table>
         </div>
+        <p id="no-result" class="hidden mt-4 font-bold text-center text-sm">No Results Found</p>
         {{-- 
             copy the current page url on pagination
             this will use to reload the current page when updating/changing data 
             --}}
         <input type="hidden" id="currentPageLink">
-        <div class="flex justify-center mt-5 text-sm">
+        <div class="flex justify-start mt-5 text-sm">
             <div class="pagination-links" id="paginationLinks">
             </div>
         </div>
