@@ -96,17 +96,19 @@ const navigatePagination = ((url)=>{
 
     // check if url on button was not empty
     //then load thte url
-    if(!(url === 'null') || (url === '')){
+    if(!((url === 'null') || (url === ''))){
         // not empty
          // set new current page link
          currentPageLink.value = url; 
         //  pass url
-        // getUsers(url);
-        console.log(url)
+        getUsers(url);
+        console.log(`not empty ${url}`)
+        console.log(url);
     }else{
         // if empty
-        // getUsers();
-        console.log(url)
+        getUsers();
+        console.log(`empty`)
+        console.log(url);
     }
 })
 // set default parameters on getUsers
@@ -278,6 +280,7 @@ const deleteUser = ((user)=>{
         const currentPageLink = document.getElementById('currentPageLink').value;
         // // reload table
         navigatePagination(currentPageLink);
+        // console.log(currentPageLink);
         })
         .catch(function (error) {
         // handle error
@@ -286,8 +289,9 @@ const deleteUser = ((user)=>{
         .then(function () {
         // always executed
         });
-        return false;
     }
+
+    return false;
 
 })
 
