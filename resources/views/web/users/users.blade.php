@@ -4,14 +4,14 @@
     {{-- table card --}}
     <div class="card w-3/4 bg-white shadow-lg p-6 rounded-lg">
         <div class="flex justify-center">
-            <input type="text" id="searchName" class="p-1 w-2/3 border-b-2 border-gray-400 text-center text-xs" placeholder="Search Name">
+            <input type="text" id="search-username" class="p-1 w-2/3 border-b-2 border-gray-400 text-center text-xs" placeholder="Search Name">
             <button onclick="showModal()"
             class="ml-auto py-1 px-3 text-center text-xs text-white rounded-full bg-blue-400">
                 +&nbsp;User
             <button>
         </div>
+        <p id="no-result" class="hidden text-center text-sm">No Results Found</p>
         <div class="flex justify-center mt-5">
-            <p id="noResult" class="hidden">No Results Found</p>
             <table id="table" class=" font-sans table-auto p-2 text-xs w-full text-center">
                 <thead>
                     <tr class="p-2 bg-gray-300">
