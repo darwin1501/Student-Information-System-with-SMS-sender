@@ -35,6 +35,7 @@ Route::get('/unblock/{user}', [UsersController::class, 'unblockUser']);
 Route::delete('/deleteuser/{user}', [UsersController::class, 'deleteUser']);
 Route::get('/userlist', [UsersController::class, 'getAllUsers'])->middleware('checkStatus','checkPermission');
 Route::post('/createuser', [UsersController::class, 'createUser']);
+Route::get('/searchUser/{username}', [UsersController::class, 'searchUser']);
 
 Route::get('/students', [StudentsController::class, 'getStudents'])->middleware(['auth', 'checkStatus'])
 ->name('students');

@@ -1,3 +1,5 @@
+
+
 // reset current page link on reload
 document.getElementById('currentPageLink').value = '';
 
@@ -113,7 +115,6 @@ const getUsers = async (url = '/userlist')=>{
     await axios.get(url)
         .then(function (response) {
         // handle success
-        // console.log(response.data);
         // load the result on table
         generateTable(response.data.data);
         // create pagination
@@ -210,10 +211,45 @@ const addUser = (()=>{
     return false;
 });
 
+const searchUser = ()=>{
+    // access search inputs property
+    const target = event.target || event.srcElement;
+    const username = target.value;
+    // remove no results found message on input
+    document.getElementById('no-result').classList.add('hidden');
+    // check if the search value was not empty string
+    if(!(username === "")){
+        // make http request
+        axios.get(`/searchUser/${username}`)
+        .then((response)=>{
+            // if no results found
+            if(response.data.data.length === 0){
+                document.getElementById('no-result').classList.remove('hidden');
+            }
+            // if there's result
+            // reload table
+            generateTable(response.data.data);
+            // reload pagination
+            paginationButtons(response.data);
+            
+        })
+        .catch((error)=>{
+            console.log(error)
+        })
+        .then(()=>{
+            // always executed
+        })
+    }else{
+        getUsers();
+    }
+    // dont send request if value was ""
+}
+
+//add event listener for search input
+document.getElementById('search-username').addEventListener('input', searchUser); 
+
 const blockUser = (()=>{
     const target = event.target || event.srcElement;
-
-    // console.log(target.value);
     // load user details
     // get url with user id for route model binding
      axios.get(`/block/${target.value}`)
@@ -231,7 +267,6 @@ const blockUser = (()=>{
         .then(function () {
         // always executed
         });
-
     return false;
 });
 
@@ -254,18 +289,10 @@ const unblockUser = (()=>{
         .then(function () {
         // always executed
         });
-
     return false;
 });
 
 const deleteUser = ((user)=>{
- 
-    // const currentPageLink = document.getElementById('currentPageLink').value;
-    // console.log(currentPageLink);
-        // reload table
-        // navigatePagination(currentPageLink);
-        
-
     const deleteConfirmation = confirm('Do you want to delete this?')
     // gain access to element properties
     if(deleteConfirmation === true){
@@ -276,7 +303,6 @@ const deleteUser = ((user)=>{
         const currentPageLink = document.getElementById('currentPageLink').value;
         // // reload table
         navigatePagination(currentPageLink);
-        // console.log(currentPageLink);
         })
         .catch(function (error) {
         // handle error
@@ -286,8 +312,6 @@ const deleteUser = ((user)=>{
         // always executed
         });
     }
-
     return false;
-
-})
+});
 

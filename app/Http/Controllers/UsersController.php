@@ -3,11 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\StoreUserRequest;
-use Illuminate\Database\QueryException;
+
 
 class UsersController extends Controller
 {
@@ -30,7 +28,6 @@ class UsersController extends Controller
         $username = $request->json('username');
         $email = $request->json('email');
         $password = $request->json('password');
-
         // save to database
         $user = new User;
         $user->username = $username;
@@ -39,7 +36,17 @@ class UsersController extends Controller
         $user->user_type = 'user';
         $user->status = 1;
         $user->save();
+    }
 
+    public function searchUser($username)
+    {
+        $user = User::query()
+                    ->where([
+                            ['username', 'LIKE', "%{$username }%"],
+                            ['user_type', 'user']
+                        ])
+                    ->paginate(4);
+        return $user;
     }
 
     public function blockUser(User $user)
@@ -57,7 +64,6 @@ class UsersController extends Controller
     public function deleteUser(User $user)
     {
         $user->delete();
-        // return $user;
     }
 
 }
