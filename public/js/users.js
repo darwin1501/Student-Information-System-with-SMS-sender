@@ -102,13 +102,9 @@ const navigatePagination = ((url)=>{
          currentPageLink.value = url; 
         //  pass url
         getUsers(url);
-        console.log(`not empty ${url}`)
-        console.log(url);
     }else{
         // if empty
         getUsers();
-        console.log(`empty`)
-        console.log(url);
     }
 })
 // set default parameters on getUsers
