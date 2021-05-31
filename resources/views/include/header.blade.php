@@ -10,7 +10,7 @@
                         <span class="caret caret-reversed "></span>
                     </div>
                     <div class="dropdown-content">
-                    <a href="#">Profile</a>
+                    <a class="cursor-pointer" onclick="showProfile()">Profile</a>
                     <a href="{{ route('logout') }}">Log out</a>
                     </div>
                 </div>

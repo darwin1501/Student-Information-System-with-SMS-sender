@@ -15,22 +15,7 @@ password.addEventListener('input', removeError);
 const login = (()=>{
     const email = document.getElementById('email');
     const password = document.getElementById('password');
-    // Make a get request
-        // axios.get('/login')
-        // .then(function (response) {
-        // // handle success
-        // console.log(response);
-        // })
-        // .catch(function (error) {
-        // // handle error
-        // console.log(error);
-        // })
-        // .then(function () {
-        // // always executed
-        // });
-
-        // Make a post request ,
-        //define the data on post
+    
         axios.post('/login', {email: email.value, password: password.value})
         .then(function (response) {
         // handle success request

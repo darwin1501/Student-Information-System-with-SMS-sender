@@ -21,6 +21,7 @@
 <body class="bg-gray-200">
     @include('include.header')
     @include('include.sidenav')
+    @include('include.modals.profile.profile')
     @yield('content')
 </body>
 <script src="{{ asset('js/app.js') }}"></script>

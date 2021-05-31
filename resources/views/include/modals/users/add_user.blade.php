@@ -1,5 +1,5 @@
     <div id="addUserModal" class="fixed flex h-screen hidden inset-0 items-center justify-center z-10">
-        {{-- card --}}
+        {{-- card start--}}
         <div  class="absolute bg-white m-auto p-6 r-0 rounded-lg w-1/4">
             <div>
                 <button onclick="closeModal()" class="close-btn p-2 pl-4 pr-4 hover:bg-red-400 hover:text-white">&times;</button>
@@ -32,4 +32,5 @@
                 </div>
             </div>
         </div>
+        {{-- card end --}}
     </div>
