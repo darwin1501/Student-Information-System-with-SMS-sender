@@ -6,9 +6,17 @@
         </div>
         <div>
             <p class="account-type text-center mb-4">Profile</p>
-            <p class="mt-2 text-xs opacity-50">Account Type:</p>
-            <p class="mt-2">Username:</p>
-            <p>Email:</p>
+            <p class="mt-2 text-xs opacity-50" id="account-type-profile"></p>
+            <p class="mt-2" id="username-profile">Username:</p>
+            <p id="email-profile">Email:</p>
+            <div class="flex justify-center mb-2 mt-4">
+                <button class="bg-blue-400 p-1 rounded-lg text-center text-white w-3/4"
+                onclick="editProfile()">Edit Profile</button>
+            </div>
+            <div class="flex justify-center">
+                <button class="bg-blue-400 p-1 rounded-lg text-center text-white w-3/4"
+                onclick="changePassword()">Change Password</button>
+            </div>
         </div>
     </div>
 </div>
