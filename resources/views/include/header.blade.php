@@ -3,7 +3,7 @@
         <p>{{$header}}</p>
         <div class="ml-auto">
             <div class="flex">
-                <p>{{Auth()->user()->username}}</p>
+                <p id="username-on-header">{{Auth()->user()->username}}</p>
                 {{-- dropdown --}}
                 <div class="dropdown">
                     <div class="dropbtn">
@@ -18,3 +18,4 @@
         </div>
     </div>
 </div>
+<input type="hidden" id="user-id" value="{{auth()->user()->id}}">
