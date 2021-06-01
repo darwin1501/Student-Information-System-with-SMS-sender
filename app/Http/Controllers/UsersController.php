@@ -19,7 +19,7 @@ class UsersController extends Controller
 
     public function getAllUsers()
     {
-        $users = User::where('user_type', 'user')->latest()->paginate(4);
+        $users = User::where('user_type', 'contributor')->latest()->paginate(4);
         return $users;
     }
 
@@ -33,7 +33,7 @@ class UsersController extends Controller
         $user->username = $username;
         $user->email = $email;
         $user->password = Hash::make($password);
-        $user->user_type = 'user';
+        $user->user_type = 'contributor';
         $user->status = 1;
         $user->save();
     }
@@ -43,7 +43,7 @@ class UsersController extends Controller
         $user = User::query()
                     ->where([
                             ['username', 'LIKE', "%{$username }%"],
-                            ['user_type', 'user']
+                            ['user_type', 'contributor']
                         ])
                     ->paginate(4);
         return $user;
