@@ -4,6 +4,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\LogOutController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MessageController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\StudentsController;
 use App\Http\Controllers\UsersController;
 use Illuminate\Support\Facades\Auth;
@@ -26,6 +27,8 @@ Route::get('/', [LoginController::class, 'loginPage'])->name('loginPage');
 // Route::get('/send', [MessageController::class, 'sendSMS']);
 
 // Route::get('/create', [UsersController::class, 'createUser']);
+Route::get('/profile/{user}', [ProfileController::class, 'getUserProfile']);
+Route::post('/updateprofile/{user}', [ProfileController::class, 'updateUserProfile']);
 
 Route::get('/users', [UsersController::class, 'usersPage'])
 ->name('users')
