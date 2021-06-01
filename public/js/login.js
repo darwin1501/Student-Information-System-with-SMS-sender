@@ -19,9 +19,10 @@ const login = (()=>{
         axios.post('/login', {email: email.value, password: password.value})
         .then(function (response) {
         // handle success request
+        // console.log(response.data);
             if(response.data === 'admin'){
                 window.location = "/users";
-            }else if(response.data === 'user'){
+            }else if(response.data === 'contributor'){
                 window.location = "/students";
             }else{
                 // login failed
