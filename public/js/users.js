@@ -195,7 +195,6 @@ const addUser = (()=>{
                     if(e === 'username'){
                         document.getElementById('usernameErrMsg')
                             .innerHTML = validationError.username[0];
-                        // console.log(validationError.username[0]);
                     }else if(e === 'email'){
                         document.getElementById('emailErrMsg')
                             .innerHTML = validationError.email[0];
