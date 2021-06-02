@@ -29,6 +29,7 @@ Route::get('/', [LoginController::class, 'loginPage'])->name('loginPage');
 // Route::get('/create', [UsersController::class, 'createUser']);
 Route::get('/profile/{user}', [ProfileController::class, 'getUserProfile']);
 Route::post('/updateprofile/{user}', [ProfileController::class, 'updateUserProfile']);
+Route::post('/updatepassword/{user}', [ProfileController::class, 'updatePassword']);
 
 Route::get('/users', [UsersController::class, 'usersPage'])
 ->name('users')

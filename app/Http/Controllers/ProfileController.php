@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreUserRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use App\Http\Requests\StoreUserRequest;
 
 class ProfileController extends Controller
 {
@@ -15,15 +16,27 @@ class ProfileController extends Controller
 
     public function updateUserProfile(User $user, StoreUserRequest $request)
     {
-        // check new changes on user profile based on user request
+        // loop each request and then save
+        foreach($request->all() as $key => $value){
+            $user->$key = $value;
+            $user->save();
+        }
+    }
 
-        // get all request that will change user profile
+    public function updatePassword(User $user, Request $request)
+    {
+        // if (Hash::check('plain-text-password', $hashedPassword)) {
+//     // The passwords match...
+// }
 
-        // store request
+        // $userpassword = $user::find(1)->password;
+        // // check if password match
+        if(Hash::check($request->json('oldpassword'), $user->password)){
+            return 'password matched';
+        }
 
-        //store
-        // $user->username = $request->json('username');
-        // $user->email = $request->json('email');
-        // $user->save();
+//         $hashedPassword = User::find(1)->password;
+            // return $request->json('oldpassword');
+            // return $userspassword = User::find(1)->password;
     }
 }
