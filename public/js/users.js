@@ -9,10 +9,10 @@ const removeError =(()=>{
     document.getElementById(`${target.id}ErrMsg`).innerHTML = "";
 });
 
-// event listeners on username and email inputs
+// remove error message on add user students
+// when the user starts on typing
 document.getElementById('username').addEventListener('input', removeError);
 document.getElementById('email').addEventListener('input', removeError);
-
 
 // generate pagination buttons
 const paginationButtons = ((pagination)=>{
@@ -230,7 +230,6 @@ const searchUser = ()=>{
             generateTable(response.data.data);
             // reload pagination
             paginationButtons(response.data);
-            
         })
         .catch((error)=>{
             console.log(error)
@@ -253,19 +252,15 @@ const blockUser = (()=>{
     // get url with user id for route model binding
      axios.get(`/block/${target.value}`)
         .then(function (response) {
-       
-        const currentPageLink = document.getElementById('currentPageLink').value;
-         // reload table
-        navigatePagination(currentPageLink);
-    
+            const currentPageLink = document.getElementById('currentPageLink').value;
+            // reload table
+            navigatePagination(currentPageLink);
         })
         .catch(function (error) {
-        // handle error
-        console.log(error);
+            // handle error
+            console.log(error);
         })
-        .then(function () {
-        // always executed
-        });
+
     return false;
 });
 
@@ -285,9 +280,7 @@ const unblockUser = (()=>{
         // handle error
         console.log(error);
         })
-        .then(function () {
-        // always executed
-        });
+
     return false;
 });
 
@@ -307,10 +300,7 @@ const deleteUser = ((user)=>{
         // handle error
         console.log(error);
         })
-        .then(function () {
-        // always executed
-        });
     }
+    
     return false;
 });
-
