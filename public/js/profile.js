@@ -1,4 +1,14 @@
 
+const removeErrorOnEditProfile =(()=>{
+    const target = event.target || event.srcElement;
+    document.getElementById(`${target.id}ErrMsg`).innerHTML = "";
+});
+
+// remove error message on add user students
+// when the user starts on typing
+document.getElementById('username-edit-profile').addEventListener('input', removeErrorOnEditProfile);
+document.getElementById('email-edit-profile').addEventListener('input', removeErrorOnEditProfile);
+
 //modals
 const profile = document.getElementById('profile');
 const profileOnEdit = document.getElementById('edit-profile');
@@ -37,7 +47,6 @@ const editProfile = (()=>{
     const userId = document.getElementById('user-id').value;
     const username = document.getElementById('username-edit-profile');
     const email = document.getElementById('email-edit-profile');
-
     // make request
     axios.get(`/profile/${userId}`)
     .then((response)=>{
@@ -75,7 +84,6 @@ const updateProfile = (()=>{
     const username = document.getElementById('username-edit-profile').value;
     const email = document.getElementById('email-edit-profile').value;
     const usernameOnHeader = document.getElementById('username-on-header');
-
     const ToBeUpdated = {};
 
     //if username has changed add it to request
@@ -100,9 +108,28 @@ const updateProfile = (()=>{
             showProfile();
             // update the username on header
             usernameOnHeader.innerHTML = username;
+            // update local storage
+            saveOldProfile(username, email);
         })
         .catch((error)=>{
-            console.log(error);
+            // handle error
+        // get error message from xhr error
+        const validationError = error.response.data.errors;
+        //loop errors
+        // extract keys with array on objects
+            for (let e in validationError) {
+                if (validationError.hasOwnProperty(e)) {
+                    //check if errors was email or username
+                    // then show errors on <p>
+                    if(e === 'username'){
+                        document.getElementById('username-edit-profileErrMsg')
+                            .innerHTML = validationError.username[0];
+                    }else if(e === 'email'){
+                        document.getElementById('email-edit-profileErrMsg')
+                            .innerHTML = validationError.email[0];
+                    }
+                }
+            }
         });
     }
 
@@ -129,15 +156,14 @@ const updatePassword = (()=>{
         confirmNewPassword.setCustomValidity("Password Don't Match");
     }else{
         // send request
-        axios.post(`/updatepassword/${userId}`, {password:newPassword.value, oldpassword:oldPassword.value})
+        axios.post(`/updatepassword/${userId}`, {newPassword:newPassword.value, oldPassword:oldPassword.value})
         .then((response)=>{
-            // if(response.data === 'incorrectPassword'){
-            //     alert('Your Old Password Was Incorrect');
-            // }else if(response.data === 'passwordMatched'){
-            //     // axios.get('/logout');
-            //     alert('password matched');
-            // }
-            console.log(response.data);
+            if(response.data === 'incorrectPassword'){
+                alert('Your Old Password Was Incorrect');
+            }else if(response.data === 'passwordMatched'){
+                // log out the user after successfull password reset
+                window.location = "/logout";
+            }
         })
         .catch((error)=>{
             console.log(error);
@@ -146,4 +172,3 @@ const updatePassword = (()=>{
 
     return false;
 });
-
