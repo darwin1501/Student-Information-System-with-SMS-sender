@@ -25,14 +25,15 @@ class ProfileController extends Controller
 
     public function updatePassword(User $user, Request $request)
     {
-        // if (Hash::check('plain-text-password', $hashedPassword)) {
-//     // The passwords match...
-// }
-
-        // $userpassword = $user::find(1)->password;
+        $newPassword = $request->json('newPassword');
+        $oldPassword = $request->json('oldPassword');
         // // check if password match
-        if(Hash::check($request->json('oldpassword'), $user->password)){
-            return 'password matched';
+        if(Hash::check($oldPassword, $user->password)){
+            $user->password = Hash::make($newPassword);
+            $user->save();
+            return 'passwordMatched';
+        }else{
+            return 'incorrectPassword';
         }
 
 //         $hashedPassword = User::find(1)->password;
