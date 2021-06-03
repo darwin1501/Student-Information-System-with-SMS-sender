@@ -19,7 +19,6 @@ const login = (()=>{
         axios.post('/login', {email: email.value, password: password.value})
         .then(function (response) {
         // handle success request
-        // console.log(response.data);
             if(response.data === 'admin'){
                 window.location = "/users";
             }else if(response.data === 'contributor'){
@@ -28,8 +27,6 @@ const login = (()=>{
                 // login failed
                 email.classList.add('border-red-500');
                 password.classList.add('border-red-500');
-                // border-gray-400
-                // console.log(response.data);
                 alert('login failed');
             }
         })
@@ -40,7 +37,6 @@ const login = (()=>{
         .then(function () {
         // always executed
         });
-
     // prevents reload
     return false;
 })
