@@ -7,12 +7,16 @@
         <div>
             <form onsubmit="return updateProfile()">
                 <p class="account-type text-center mb-4">Edit Profile</p>
+                <p id="username-edit-profileErrMsg" class=" text-xs text-center text-red-500"></p>
                 <p class="mb-2 text-xs">Username</p>
-                <input class="bg-gray-300 mb-2 p-2 rounded-lg text-center w-full" id="username-edit-profile"
-                    required>
+                <input class="bg-gray-300 mb-2 p-2 rounded-lg text-center w-full" 
+                        id="username-edit-profile"
+                        required>
+                <p id="email-edit-profileErrMsg" class=" text-xs text-center text-red-500"></p>
                 <p class="mb-2 text-xs">Email</p>
-                <input type="email" class="bg-gray-300 p-2 rounded-lg text-center w-full" id="email-edit-profile"
-                    required>
+                <input class="bg-gray-300 p-2 rounded-lg text-center w-full" 
+                        id="email-edit-profile" type="email" 
+                        required>
                 <div class="flex justify-center mb-2 mt-4">
                     <button class="bg-blue-400 p-1 rounded-lg text-center text-white w-3/4">Update Profile</button>
                 </div>
