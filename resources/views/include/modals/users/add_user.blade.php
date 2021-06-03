@@ -9,7 +9,6 @@
                 <div class="input-container">
                     <form onsubmit="return addUser()" id="addUserForm">
                         <p id="usernameErrMsg" class=" text-xs text-center text-red-500"></p>
-
                         <input type="text" name="name" id="username" 
                             class="_clear-onsucess border-2 border-gray-300 user-inputs mb-2 p-2 w-full bg-gray-200 rounded-lg text-center text-sm" 
                             placeholder="username" required>
