@@ -26,6 +26,7 @@
                 </table>
         </div>
         <p id="no-result" class="hidden mt-4 font-bold text-center text-sm">No Results Found</p>
+        <p id="empty-users" class="hidden mt-4 font-bold text-center text-sm">No users added yet.</p>
         {{-- 
             copy the current page url on pagination
             this will use to reload the current page when updating/changing data 

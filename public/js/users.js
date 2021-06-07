@@ -111,10 +111,16 @@ const navigatePagination = ((url)=>{
 })
 // set default parameters on getUsers
 const getUsers = async (url = '/userlist')=>{
+    // hide empty message when this function load
+    document.getElementById('empty-users').classList.add('hidden');
     // Make a get request
     await axios.get(url)
         .then(function (response) {
-        // handle success
+        // show empty message when no contributors added yet
+        if(response.data.data.length === 0){
+            document.getElementById('empty-users').classList.remove('hidden');
+        }
+
         // load the result on table
         generateTable(response.data.data);
         // create pagination
@@ -215,6 +221,7 @@ const searchUser = ()=>{
     const target = event.target || event.srcElement;
     const username = target.value;
     // remove no results found message on input
+    //when searching
     document.getElementById('no-result').classList.add('hidden');
     // check if the search value was not empty string
     if(!(username === "")){
