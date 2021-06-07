@@ -185,7 +185,8 @@ const addUser = (()=>{
             for (const input of inputsToBeCleared) {
                 input.value = "";
             }
-
+            // show successful message
+            alert('user successfully added');
             // reload the table
             getUsers();
         })
