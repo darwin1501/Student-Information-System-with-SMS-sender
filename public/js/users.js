@@ -111,6 +111,7 @@ const navigatePagination = ((url)=>{
 })
 // set default parameters on getUsers
 const getUsers = async (url = '/userlist')=>{
+    
     // hide empty message when this function load
     document.getElementById('empty-users').classList.add('hidden');
     // Make a get request
@@ -120,7 +121,8 @@ const getUsers = async (url = '/userlist')=>{
         if(response.data.data.length === 0){
             document.getElementById('empty-users').classList.remove('hidden');
         }
-
+        // remove the no result message on searching
+        document.getElementById('no-result').classList.add('hidden');
         // load the result on table
         generateTable(response.data.data);
         // create pagination
@@ -221,13 +223,10 @@ const searchUser = ()=>{
     // access search inputs property
     const target = event.target || event.srcElement;
     const username = target.value;
-    // remove no results found message on input
-    //when searching
-    document.getElementById('no-result').classList.add('hidden');
     // check if the search value was not empty string
     if(!(username === "")){
         // make http request
-        axios.get(`/searchUser/${username}`)
+         axios.get(`/searchUser/${username}`)
         .then((response)=>{
             // if no results found
             if(response.data.data.length === 0){
@@ -242,13 +241,12 @@ const searchUser = ()=>{
         .catch((error)=>{
             console.log(error)
         })
-        .then(()=>{
-            // always executed
-        })
+        
     }else{
+        // dont send request if value was "" instead load all users
         getUsers();
     }
-    // dont send request if value was ""
+
 }
 
 //add event listener for search input
