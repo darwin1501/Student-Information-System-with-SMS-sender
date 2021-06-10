@@ -22,6 +22,7 @@ use Illuminate\Support\Facades\Auth;
 // test route
 // Route::get('/create', [UsersController::class, 'testCreate']);
 
+// login
 Route::get('/', [LoginController::class, 'loginPage'])->name('loginPage');
 
 // Route::get('/send', [MessageController::class, 'sendSMS']);
@@ -53,10 +54,11 @@ Route::post('/createuser', [UsersController::class, 'createUser'])
 Route::get('/searchUser/{username}', [UsersController::class, 'searchUser'])
 ->middleware(['auth', 'checkPermission']);
 
-// contributor and admin
-Route::get('/students', [StudentsController::class, 'getStudents'])
+// students
+Route::get('/students', [StudentsController::class, 'studentspage'])
 ->middleware(['auth', 'checkStatus'])
 ->name('students');
+Route::post('/addstudent', [StudentsController::class, 'addStudent']);
 
 Route::post('/login', [LoginController::class, 'verifyUser'])->name('login');
 Route::get('/logout', [LogOutController::class, 'logOut'])->name('logout');
