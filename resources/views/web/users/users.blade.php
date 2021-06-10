@@ -3,6 +3,7 @@
 <div class="flex justify-center z-0">
     {{-- table card --}}
     <div class="card w-3/4 bg-white shadow-lg p-6 rounded-lg">
+        {{-- add user --}}
         <div class="flex justify-center">
             <input type="text" id="search-username" class="p-1 w-2/3 border-b-2 border-gray-400 text-center text-xs" placeholder="Search Name">
             <button onclick="showModal()"
