@@ -55,10 +55,13 @@ Route::get('/searchUser/{username}', [UsersController::class, 'searchUser'])
 ->middleware(['auth', 'checkPermission']);
 
 // students
-Route::get('/students', [StudentsController::class, 'studentspage'])
+Route::get('/studentspage', [StudentsController::class, 'studentspage'])
 ->middleware(['auth', 'checkStatus'])
 ->name('students');
-Route::post('/addstudent', [StudentsController::class, 'addStudent']);
+Route::post('/addstudent', [StudentsController::class, 'addStudent'])
+->middleware(['auth', 'checkStatus']);
+Route::get('/getstudents', [StudentsController::class, 'getStudents'])
+->middleware(['auth', 'checkStatus']);
 
 Route::post('/login', [LoginController::class, 'verifyUser'])->name('login');
 Route::get('/logout', [LogOutController::class, 'logOut'])->name('logout');
