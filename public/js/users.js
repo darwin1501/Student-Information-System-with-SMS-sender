@@ -36,7 +36,6 @@ const paginationButtons = ((pagination)=>{
        }
          paginationLinks.insertAdjacentHTML('beforeend', buttonTemplate);
     }
-    
 });
 
 const generateTable = ((users)=>{
