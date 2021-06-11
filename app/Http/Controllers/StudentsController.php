@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Students;
 use Illuminate\Http\Request;
 
 class StudentsController extends Controller
@@ -26,5 +27,11 @@ class StudentsController extends Controller
         ]);
 
         return 'success';
+    }
+
+    public function getStudents()
+    {
+        $students = Students::latest()->paginate(4);
+        return $students;
     }
 }
