@@ -8,7 +8,6 @@ const removeError =(()=>{
 
     document.getElementById(`${target.id}ErrMsg`).innerHTML = "";
 });
-
 // remove error message on add user students
 // when the user starts on typing
 document.getElementById('username').addEventListener('input', removeError);

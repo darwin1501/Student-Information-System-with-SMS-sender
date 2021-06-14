@@ -8,7 +8,6 @@ const removeErrorOnEditProfile =(()=>{
 // when the user starts on typing
 document.getElementById('username-edit-profile').addEventListener('input', removeErrorOnEditProfile);
 document.getElementById('email-edit-profile').addEventListener('input', removeErrorOnEditProfile);
-
 //modals
 const profile = document.getElementById('profile');
 const profileOnEdit = document.getElementById('edit-profile');

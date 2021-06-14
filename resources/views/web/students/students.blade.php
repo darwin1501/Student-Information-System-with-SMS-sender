@@ -8,7 +8,6 @@
             <button onclick="showAddStudentModal()"
                 class="ml-auto py-1 px-3 text-center text-xs text-white rounded-full bg-blue-400">
                 +&nbsp;Student
-            <button>
         </div>
         <div class="flex justify-center mt-5">
             <table id="table" class=" font-sans table-auto p-2 text-xs w-full text-center">
