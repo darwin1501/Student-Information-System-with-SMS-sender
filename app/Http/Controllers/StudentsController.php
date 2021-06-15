@@ -34,4 +34,31 @@ class StudentsController extends Controller
         $students = Students::latest()->paginate(4);
         return $students;
     }
+
+    public function searchStudent($studentsname)
+    {
+        $students = Students::query()
+                    ->where([
+                            ['students_name', 'LIKE', "%{$studentsname }%"]
+                        ])
+                    ->paginate(4);
+        return $students;
+    }
+
+    public function editStudent(Students $student)
+    {
+        return $student;
+    }
+
+    public function updateStudent(Students $student, Request $request)
+    {
+        $student->students_name = $request->json('studentsName');
+        $student->phone_number = $request->json('phoneNumber');
+        $student->save();
+    }
+
+    public function deleteStudent(Students $student)
+    {
+        $student->delete();
+    }
 }
