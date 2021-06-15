@@ -118,6 +118,8 @@ const getUsers = async (url = '/userlist')=>{
         // show empty message when no contributors added yet
         if(response.data.data.length === 0){
             document.getElementById('empty-users').classList.remove('hidden');
+        }else{
+            document.getElementById('empty-users').classList.add('hidden')
         }
         // remove the no result message on searching
         document.getElementById('no-result').classList.add('hidden');
@@ -305,6 +307,5 @@ const deleteUser = ((user)=>{
         console.log(error);
         })
     }
-    
     return false;
 });
