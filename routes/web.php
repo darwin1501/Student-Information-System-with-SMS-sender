@@ -62,6 +62,15 @@ Route::post('/addstudent', [StudentsController::class, 'addStudent'])
 ->middleware(['auth', 'checkStatus']);
 Route::get('/getstudents', [StudentsController::class, 'getStudents'])
 ->middleware(['auth', 'checkStatus']);
+Route::get('/editstudent/{student}', [StudentsController::class, 'editStudent'])
+->middleware(['auth', 'checkStatus']);
+Route::post('/updatestudent/{student}', [StudentsController::class, 'updateStudent'])
+->middleware(['auth', 'checkStatus']);
+Route::delete('/deletestudent/{student}', [StudentsController::class, 'deleteStudent'])
+->middleware(['auth', 'checkStatus']);
+Route::get('/searchstudent/{studentsname}', [StudentsController::class, 'searchStudent'])
+->middleware(['auth', 'checkStatus']);
 
+// auth
 Route::post('/login', [LoginController::class, 'verifyUser'])->name('login');
 Route::get('/logout', [LogOutController::class, 'logOut'])->name('logout');
