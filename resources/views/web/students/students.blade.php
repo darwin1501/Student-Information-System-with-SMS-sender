@@ -5,6 +5,8 @@
     <div class="card w-3/4 bg-white shadow-lg p-6 rounded-lg">
         {{-- add user --}}
         <div class="flex justify-center">
+            <input type="text" id="search-username" class="p-1 w-2/3 border-b-2 border-gray-400 text-center text-xs" 
+            placeholder="Search Name" oninput="searchStudent()">
             <button onclick="showAddStudentModal()"
                 class="ml-auto py-1 px-3 text-center text-xs text-white rounded-full bg-blue-400">
                 +&nbsp;Student
@@ -38,6 +40,7 @@
     </div>
 </div>
 @include('include.modals.students.add_students')
+@include('include.modals.students.edit_students')
 @endsection
 
 @section('jsLogic')
