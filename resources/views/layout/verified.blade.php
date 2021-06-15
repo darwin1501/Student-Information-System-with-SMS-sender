@@ -19,6 +19,8 @@
     <title>Grade Sender</title>
 </head>
 <body class="bg-gray-200">
+    {{-- set user id --}}
+    <input type="hidden" id="user-id" value="{{Auth()->user()->id}}">
     @include('include.header')
     @include('include.sidenav')
     {{-- modals --}}
