@@ -22,7 +22,7 @@ const login = (()=>{
             if(response.data === 'admin'){
                 window.location = "/users";
             }else if(response.data === 'contributor'){
-                window.location = "/students";
+                window.location = "/studentspage";
             }else{
                 // login failed
                 email.classList.add('border-red-500');
