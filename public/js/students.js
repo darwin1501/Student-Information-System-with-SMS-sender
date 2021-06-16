@@ -62,6 +62,8 @@ const generateTable = (data) => {
     content.innerHTML = "";
 
     for (const student of students) {
+        let studentName = student.students_name;
+        let phoneNumber = student.phone_number;
         // check if the user owns the data of students
             if(userId == student.user_id || userId == 1){
                 // if matched
@@ -95,6 +97,12 @@ const generateTable = (data) => {
                         <div class="option-dropdown">
                             ${optionsContent}
                         </div>
+                    </td>
+                    <td class="p-2">
+                    <button onclick="getNameAndPhone(${student.id},'${studentName}', ${phoneNumber})"
+                        class="ml-auto py-1 px-3 text-center text-xs text-white rounded-full bg-blue-400">
+                        Select
+                    </button>
                     </td>
                 </tr>`;
         //loop and insert html element on table body
@@ -259,3 +267,27 @@ const searchStudent = () => {
     }
 
 }
+
+// notofication logic
+let studentsToNotify = [];
+/**
+ * 
+ * @param {string} studentsName 
+ * @param {number} phoneNumber 
+ * @param {number} id
+ */
+const getNameAndPhone = (id,studentsName, phoneNumber ) => {
+    // 
+    const boxOfStudent = document.getElementById('selected-student-box');
+    let studentsToBeAdded
+    studentsToNotify.push({id:id, studentsName:studentsName, phoneNumber:phoneNumber, message:""})
+
+    // console.log(studentsToNotify);
+    studentsToBeAdded = `<tr class="table-content">
+                            <td class="p-2">${studentsName}</td>
+                        </tr?`;
+    boxOfStudent.insertAdjacentHTML('beforeend', studentsToBeAdded)
+
+    //pass student name at notification box
+}
+
