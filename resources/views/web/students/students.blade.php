@@ -1,8 +1,8 @@
 @extends('layout.verified')
 @section('content')
-<div class="flex justify-center z-0">
+<div class="m5 flex justify-center z-0">
     {{-- table card --}}
-    <div class="card w-3/4 bg-white shadow-lg p-6 rounded-lg">
+    <div class="card w-3/5 h-80 bg-white shadow-lg p-6 rounded-lg">
         {{-- add user --}}
         <div class="flex justify-center">
             <input type="text" id="search-username" class="p-1 w-2/3 border-b-2 border-gray-400 text-center text-xs" 
@@ -20,6 +20,7 @@
                         <th class="p-2 text-gray-700">Added by</th>
                         <th class="p-2 text-gray-700">Date Added</th>
                         <th class="p-2 text-gray-700">Options</th>
+                        <th class="p-2 text-gray-700"></th>
                     </tr>
                 </thead>
                 <tbody id="tbl-main-content">
@@ -35,6 +36,28 @@
         <input type="hidden" id="currentPageLink">
         <div class="flex justify-start mt-5 text-sm">
             <div class="pagination-links" id="paginationLinks">
+            </div>
+        </div>
+    </div>
+    {{-- selected student card --}}
+    <div>
+        <div class="card w-full h-80 ml-2 mr-2 p-3 bg-white shadow-lg rounded-lg">
+            <p class="text-center">Selected Student</p>
+            <div class="flex justify-center">
+                <div class="w-44 h-56 mt-3 p-2 bg-gray-100 rounded overflow-y-auto">
+                    <table class="font-sans table-auto p-2 text-xs w-full">
+                        <thead>
+                        </thead>
+                        <tbody id="selected-student-box">
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="mt-2 flex justify-end">
+                <button onclick=""
+                class=" py-1 px-3 text-center text-xs text-white rounded-full bg-blue-400">
+                    Notify
+                </button>
             </div>
         </div>
     </div>
