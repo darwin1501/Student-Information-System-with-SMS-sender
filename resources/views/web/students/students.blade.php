@@ -44,10 +44,9 @@
         <div class="card w-full h-80 ml-2 mr-2 p-3 bg-white shadow-lg rounded-lg">
             <p class="text-center">Selected Student</p>
             <div class="flex justify-center">
-                <div class="w-44 h-56 mt-3 p-2 bg-gray-100 rounded overflow-y-auto">
+                {{-- selected student --}}
+                <div class="w-48 h-56 mt-3 p-2 bg-gray-100 rounded overflow-y-auto">
                     <table class="font-sans table-auto p-2 text-xs w-full">
-                        <thead>
-                        </thead>
                         <tbody id="selected-student-box">
                         </tbody>
                     </table>
