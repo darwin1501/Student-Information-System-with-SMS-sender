@@ -88,7 +88,7 @@ const generateTable = (data) => {
         // new date format
         const D = new Date(dateString);
         const tableRow = `
-                <tr class="table-content" id=${student.id}>
+                <tr class="table-content">
                     <td class="p-2">${student.students_name}</td>
                     <td class="p-2">${student.phone_number}</td>
                     <td class="p-2">${student.created_by}</td>
@@ -99,7 +99,7 @@ const generateTable = (data) => {
                         </div>
                     </td>
                     <td class="p-2">
-                    <button onclick="getNameAndPhone(${student.id},'${studentName}', ${phoneNumber})"
+                    <button onclick="getStudentInfo(${student.id},'${studentName}', ${phoneNumber})"
                         class="ml-auto py-1 px-3 text-center text-xs text-white rounded-full bg-blue-400">
                         Select
                     </button>
@@ -276,18 +276,44 @@ let studentsToNotify = [];
  * @param {number} phoneNumber 
  * @param {number} id
  */
-const getNameAndPhone = (id,studentsName, phoneNumber ) => {
+const getStudentInfo = (id,studentsName, phoneNumber ) => {
     // 
     const boxOfStudent = document.getElementById('selected-student-box');
     let studentsToBeAdded
     studentsToNotify.push({id:id, studentsName:studentsName, phoneNumber:phoneNumber, message:""})
 
     // console.log(studentsToNotify);
-    studentsToBeAdded = `<tr class="table-content">
+    studentsToBeAdded = `<tr class="table-content flex" id='${id}'>
                             <td class="p-2">${studentsName}</td>
+                            <td class="p-2 ml-auto">
+                            <button onclick="removeOnSelected(${id})"
+                            class=" py-1 px-3 text-center text-xs text-white rounded bg-red-400">
+                                x
+                            </button>
+                            </td>
                         </tr?`;
     boxOfStudent.insertAdjacentHTML('beforeend', studentsToBeAdded)
 
     //pass student name at notification box
 }
+
+const removeOnSelected = (id) => {
+    const selectedStudent = document.getElementById('selected-student-box');
+    // remove student in json
+    for (let [i, student] of studentsToNotify.entries()) {
+        if (student.id === id) {
+            studentsToNotify.splice(i, 1);
+           
+        }
+     }
+    //  remove student on selected
+    // let d = document.getElementById("top");
+    let studentsToRemove = document.getElementById(`${id}`);
+    selectedStudent.removeChild(studentsToRemove);
+
+    
+}
+
+
+
 
