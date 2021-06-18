@@ -1,3 +1,54 @@
+# Student Messenger
+
+## Description
+
+A system that sends sms to the students.
+
+## Getting Started
+
+### Dependencies
+
+* Database: MySQL
+
+### Installing
+
+* Install composer required packages
+```
+composer install
+```
+
+* Install npm required packages
+```
+npm install
+```
+
+* Migrate Database
+```
+php artisan migrate
+```
+
+* Run Database Seeds to import account
+```
+php artisan db:seed
+```
+
+* Set Application key
+```
+php artisan key:generate
+```
+
+### Executing program
+
+* Start Server
+```
+php artisan serve
+```
+
+* Login credentials
+
+    email: admin@email.com \
+    password: admin
+
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
 
 <p align="center">
