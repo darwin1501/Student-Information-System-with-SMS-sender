@@ -25,7 +25,7 @@ class UsersTableSeeder extends Seeder
                 'username' => 'admin',
                 'email' => 'admin@email.com',
                 'email_verified_at' => NULL,
-                'password' => '$2y$10$4z/k9pAMMB9.6vnnH0mMuOBJwqCftnK/WjOGahq7V07wtVDDyQRU6', //password 
+                'password' => '$2y$10$4z/k9pAMMB9.6vnnH0mMuOBJwqCftnK/WjOGahq7V07wtVDDyQRU6', //admin 
                 'user_type' => 'admin',
                 'status' => 1,
                 'remember_token' => NULL,
