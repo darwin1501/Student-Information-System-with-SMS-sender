@@ -2,7 +2,7 @@
 @section('content')
 <div class="m5 flex justify-center z-0">
     {{-- table card --}}
-    <div class="card w-3/5 h-80 bg-white shadow-lg p-6 rounded-lg">
+    <div class="card w-3/5 h-full bg-white shadow-lg p-6 rounded-lg">
         {{-- add user --}}
         <div class="flex justify-center">
             <input type="text" id="search-username" class="p-1 w-2/3 border-b-2 border-gray-400 text-center text-xs" 
@@ -41,11 +41,11 @@
     </div>
     {{-- selected student card --}}
     <div>
-        <div class="card w-full h-80 ml-2 mr-2 p-3 bg-white shadow-lg rounded-lg">
+        <div class="card w-full h-96 ml-2 mr-2 p-3 bg-white shadow-lg rounded-lg">
             <p class="text-center">Selected Student</p>
             <div class="flex justify-center">
                 {{-- selected student --}}
-                <div class="w-48 h-56 mt-3 p-2 bg-gray-100 rounded overflow-y-auto">
+                <div class="w-48 h-72 mt-3 p-2 bg-gray-100 rounded overflow-y-auto">
                     <table class="font-sans table-auto p-2 text-xs w-full">
                         <tbody id="selected-student-box">
                         </tbody>
