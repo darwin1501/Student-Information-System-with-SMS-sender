@@ -1,6 +1,8 @@
 // auto creation
 // const { default: axios } = require("axios");
 
+let studentsToNotify = [];
+
 document.getElementById('phone-number').addEventListener('input', () => {
     const target = event.target || event.srcElement;
     // prevents the phone number length from exceeding at the given max length
@@ -27,6 +29,29 @@ const showAddStudentModal = () => {
 const closeStudentModal = () => {
     addStudentModal.classList.add('hidden');
     addStudentModal.classList.remove('bg-gray-500', 'bg-opacity-70');
+}
+/**
+ * 
+ * @param {node} element html element 
+ */
+const enableSelectButton = (element) => {
+    // enable select button
+    element.classList.add('bg-blue-400');
+    element.classList.remove('bg-gray-400');
+    element.classList.remove('cursor-not-allowed');
+    element.classList.remove('pointer-events-none')
+}
+
+/**
+ * 
+ * @param {node} element html element
+ */
+ const disableSelectButton = (element) => {
+    // disable select button 
+    element.classList.remove('bg-blue-400');
+    element.classList.add('bg-gray-400');
+    element.classList.add('cursor-not-allowed');
+    element.classList.add('pointer-events-none');  
 }
 
 // generate pagination buttons
@@ -82,7 +107,7 @@ const generateTable = (data) => {
                 // if not
                 optionsContent = `<div class="option-btn cursor-not-allowed" style="background-image: url('/svg/setting_disabled.svg')"></div>`;
                                 
-        }
+            }
         // format date
         const dateString = student.created_at;
         // new date format
@@ -99,14 +124,27 @@ const generateTable = (data) => {
                         </div>
                     </td>
                     <td class="p-2">
-                    <button onclick="getStudentInfo(${student.id},'${studentName}', ${phoneNumber})"
-                        class="ml-auto py-1 px-3 text-center text-xs text-white rounded-full bg-blue-400">
-                        Select
-                    </button>
+                        <button onclick="selectStudent(${student.id},'${studentName}', ${phoneNumber})"
+                        class="ml-auto py-1 px-3 text-center text-xs text-white rounded-full bg-blue-400"
+                        id="btn-${student.id}">
+                            Select
+                        </button>
                     </td>
                 </tr>`;
         //loop and insert html element on table body
         content.insertAdjacentHTML('beforeend', tableRow);
+
+        // check if the student has been seleted,
+        // loop on json and check
+        // if student has been selected then disable select button
+        for (let [i, selectedStudent] of studentsToNotify.entries()) {
+            // if student was selected disable button
+            if (selectedStudent.id === student.id) {
+                let selectBtnToBeDisable = document.getElementById(`btn-${student.id}`);
+                
+                disableSelectButton(selectBtnToBeDisable);  
+            }
+         }
     }
 }
 /**
@@ -188,7 +226,6 @@ const editStudent = (id) => {
         phoneNumber.value = response.data.phone_number;
         // hidden inputs
         studentsId.value = response.data.id;
-
         // load modal
         editStudentModal.classList.remove('hidden');
         editStudentModal.classList.add('bg-gray-500', 'bg-opacity-70');
@@ -269,20 +306,20 @@ const searchStudent = () => {
 }
 
 // notofication logic
-let studentsToNotify = [];
 /**
  * 
  * @param {string} studentsName 
  * @param {number} phoneNumber 
  * @param {number} id
  */
-const getStudentInfo = (id,studentsName, phoneNumber ) => {
-    // 
+const selectStudent = (id,studentsName, phoneNumber ) => {
+    const target = event.target || event.srcElement;
+
     const boxOfStudent = document.getElementById('selected-student-box');
     let studentsToBeAdded
+    // add student info in JSON
     studentsToNotify.push({id:id, studentsName:studentsName, phoneNumber:phoneNumber, message:""})
-
-    // console.log(studentsToNotify);
+    // inside selected student
     studentsToBeAdded = `<tr class="table-content flex" id='${id}'>
                             <td class="p-2">${studentsName}</td>
                             <td class="p-2 ml-auto">
@@ -292,28 +329,30 @@ const getStudentInfo = (id,studentsName, phoneNumber ) => {
                             </button>
                             </td>
                         </tr?`;
-    boxOfStudent.insertAdjacentHTML('beforeend', studentsToBeAdded)
-
-    //pass student name at notification box
+    // add student on selected list
+    boxOfStudent.insertAdjacentHTML('beforeend', studentsToBeAdded)  
+    // disable select button after the student has been selected
+    disableSelectButton(target)  
 }
 
 const removeOnSelected = (id) => {
     const selectedStudent = document.getElementById('selected-student-box');
+    // loop on json
     // remove student in json
     for (let [i, student] of studentsToNotify.entries()) {
         if (student.id === id) {
-            studentsToNotify.splice(i, 1);
-           
+            studentsToNotify.splice(i, 1); 
         }
      }
     //  remove student on selected
-    // let d = document.getElementById("top");
     let studentsToRemove = document.getElementById(`${id}`);
     selectedStudent.removeChild(studentsToRemove);
-
-    
+    //enable the disabled select button
+    let btnToBeEnable = document.getElementById(`btn-${id}`);
+    //check if value wasn't null
+    if(btnToBeEnable !== null){
+        // not empty
+        // enable button
+        enableSelectButton(btnToBeEnable);
+    }
 }
-
-
-
-
