@@ -1,6 +1,7 @@
 // auto creation
 // const { default: axios } = require("axios");
 
+
 let studentsToNotify = [];
 
 document.getElementById('phone-number').addEventListener('input', () => {
@@ -314,7 +315,7 @@ const searchStudent = () => {
  */
 const selectStudent = (id,studentsName, phoneNumber ) => {
     const target = event.target || event.srcElement;
-
+    const notifyBtn = document.getElementById('notify-btn');
     const boxOfStudent = document.getElementById('selected-student-box');
     let studentsToBeAdded
     // add student info in JSON
@@ -332,11 +333,17 @@ const selectStudent = (id,studentsName, phoneNumber ) => {
     // add student on selected list
     boxOfStudent.insertAdjacentHTML('beforeend', studentsToBeAdded)  
     // disable select button after the student has been selected
-    disableSelectButton(target)  
+    disableSelectButton(target) 
+    // enable notify button
+    notifyBtn.classList.remove('bg-gray-400');
+    notifyBtn.classList.remove('cursor-not-allowed');
+    notifyBtn.classList.remove('pointer-events-none');
+    notifyBtn.classList.add('bg-blue-400');
 }
 
 const removeOnSelected = (id) => {
     const selectedStudent = document.getElementById('selected-student-box');
+    const notifyBtn = document.getElementById('notify-btn');
     // loop on json
     // remove student in json
     for (let [i, student] of studentsToNotify.entries()) {
@@ -354,5 +361,115 @@ const removeOnSelected = (id) => {
         // not empty
         // enable button
         enableSelectButton(btnToBeEnable);
+    }
+    // disable notify button if none was selected
+   if(selectedStudent.childElementCount === 0){
+       // disable notify button
+    notifyBtn.classList.remove('bg-blue-400');
+    notifyBtn.classList.add('pointer-events-none');
+    notifyBtn.classList.add('cursor-not-allowed');
+    notifyBtn.classList.add('bg-gray-400');
+   }
+}
+
+const notifyStudentModal = document.getElementById('notify-student');
+
+const prepareToNotify = () => {
+    // load modal for notifying student
+    notifyStudentModal.classList.remove('hidden');
+    notifyStudentModal.classList.add('bg-gray-500', 'bg-opacity-70');
+    // console.log(studentsToNotify);
+    const notifyStudentBox = document.getElementById('notify-student-box');
+    let selectedStudent;
+    for (const students of studentsToNotify) {
+        selectedStudent = `<tr class="table-content flex" id='student-msg-${students.id}'>
+                                <td class="p-2">${students.studentsName}</td>
+                                <td class="p-2 ml-auto">
+                                <button onclick="prepareMessage(${students.id})"
+                                id="btn-msg-${students.id}"
+                                class=" py-1 px-3 text-center text-xs text-white rounded-full bg-gray-400"
+                                id="notify-btn">
+                                    Message
+                                </button>
+                                </td>
+                            </tr?`;
+        notifyStudentBox.insertAdjacentHTML('beforeend', selectedStudent)        
+    }
+}
+
+const closeNotifyStudent = () => {
+    notifyStudentModal.classList.add('hidden');
+    notifyStudentModal.classList.remove('bg-gray-500', 'bg-opacity-70');
+    // remove all students to notify
+    document.getElementById('notify-student-box').innerHTML = '';
+}
+
+const setMessageModal = document.getElementById('set-message-modal');
+/**
+ * 
+ * @param {number} id id of student
+ */
+const prepareMessage = (id) => {
+    // find user id at json
+    const student = studentsToNotify.find(student => student.id === id);
+    const textAreaMessage = document.getElementById('textarea-message');
+    const setStudentId = document.getElementById('student-to-message');
+    // then set message property then save
+    // found.name = 'carl'
+    // student.message = 'hello world';
+    textAreaMessage.value = student.message;
+    setStudentId.value = id;
+   
+    setMessageModal.classList.remove('hidden');
+    setMessageModal.classList.add('bg-gray-500', 'bg-opacity-70');
+}
+
+const closeSetMessageModal = () => {
+    setMessageModal.classList.add('hidden');
+    setMessageModal.classList.remove('bg-gray-500', 'bg-opacity-70');
+}
+
+const saveMessage = () => {
+   const studentId = document.getElementById('student-to-message').value;
+   const textAreaMessage = document.getElementById('textarea-message').value;
+   const sendButton = document.getElementById('send-btn');
+   // find user id at json
+   const student = studentsToNotify.find(student => student.id == studentId);
+   student.message = textAreaMessage;
+    // loop on json and check if all messages are empty
+    const findEmptyMessage = studentsToNotify.find(student => student.message === "");
+
+    // if no empty message left , then enable send btn
+    // else disable send btn
+    if(findEmptyMessage === undefined){
+        // enable send btn
+        sendButton.classList.remove('bg-gray-400');
+        sendButton.classList.remove('cursor-not-allowed');
+        sendButton.classList.remove('pointer-events-none');
+        sendButton.classList.add('bg-blue-400');
+    }else{
+        // disable send btn
+        sendButton.classList.add('bg-gray-400');
+        sendButton.classList.add('cursor-not-allowed');
+        sendButton.classList.add('pointer-events-none');
+        sendButton.classList.remove('bg-blue-400');
+    }
+}
+
+const checkTextAreaValue = () => {
+    const target = event.targe || event.srcElement;
+    const studentId = document.getElementById('student-to-message').value;
+    const messageButton = document.getElementById(`btn-msg-${studentId}`);
+
+    if(target.value === ""){
+        // empty
+        // add inactive button style
+        messageButton.classList.add('bg-gray-400');
+        messageButton.classList.remove('bg-blue-400');
+    }else{
+        // not empty
+        // add active button style
+        messageButton.classList.add('bg-blue-400');
+        messageButton.classList.remove('bg-gray-400');
     }
 }
