@@ -42,7 +42,7 @@
     {{-- selected student card --}}
     <div>
         <div class="card w-full h-96 ml-2 mr-2 p-3 bg-white shadow-lg rounded-lg">
-            <p class="text-center">Selected Student</p>
+            <p class="text-left opacity-50 text-xs">Select Student from table</p>
             <div class="flex justify-center">
                 {{-- selected student --}}
                 <div class="w-48 h-72 mt-3 p-2 bg-gray-100 rounded overflow-y-auto">
@@ -53,16 +53,20 @@
                 </div>
             </div>
             <div class="mt-2 flex justify-end">
-                <button onclick=""
-                class=" py-1 px-3 text-center text-xs text-white rounded-full bg-blue-400">
+                <button onclick="prepareToNotify()"
+                class=" py-1 px-3 text-center text-xs text-white rounded-full bg-gray-400 cursor-not-allowed pointer-events-none"
+                id="notify-btn">
                     Notify
                 </button>
             </div>
         </div>
     </div>
 </div>
+{{-- modals --}}
 @include('include.modals.students.add_students')
 @include('include.modals.students.edit_students')
+@include('include.modals.students.notify_students')
+@include('include.modals.students.create_message')
 @endsection
 
 @section('jsLogic')
