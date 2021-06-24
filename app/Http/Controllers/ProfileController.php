@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\StoreUserRequest;
 
+
 class ProfileController extends Controller
 {
     public function getUserProfile(User $user)
