@@ -15,7 +15,7 @@
                         required>
                 <p class="mb-2 text-xs">Phone Number</p>
                 <input class="bg-gray-300 p-2 rounded-lg text-center w-full" 
-                        id="phone-number-edit" type="number" maxlength="11" 
+                        id="phone-number-edit" type="text" maxlength="11" 
                         required>
                 <div class="flex justify-center mb-2 mt-4">
                     <button class="bg-blue-400 p-1 rounded-lg text-center text-white w-3/4">Save Changes</button>

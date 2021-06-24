@@ -3,7 +3,7 @@
     <input type="hidden" id="student-to-message">
         <div class="absolute bg-white m-auto p-6 r-0 rounded-lg w-1/4">
             <div>
-                <button onclick="closeSetMessageModal()" class="close-btn p-2 pl-2 pr-2 hover:bg-red-400 hover:text-white">&times;</button>
+                <button onclick="closeSetMessageModal()" class="close-btn p-2 pl-4 pr-4 hover:bg-red-400 hover:text-white">&times;</button>
             </div>
             <p class="text-center">Message</p>
             <div class="flex justify-center">

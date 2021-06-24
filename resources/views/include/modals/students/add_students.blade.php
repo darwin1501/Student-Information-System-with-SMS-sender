@@ -12,7 +12,7 @@
                         class="_clear-onsucess border-2 border-gray-300 user-inputs mb-2 p-2 w-full bg-gray-200 rounded-lg text-center text-sm" 
                         placeholder="students name" required>
 
-                    <input type="number" name="phone-number" id="phone-number" 
+                    <input type="text" name="phone-number" id="phone-number"
                         class="_clear-onsucess border-2 addUserForm border-gray-300 user-inputs mb-2 p-2 w-full bg-gray-200 rounded-lg text-center text-sm"
                         maxlength="11"
                         placeholder="phone number" required>
