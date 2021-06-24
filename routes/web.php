@@ -5,6 +5,7 @@ use App\Http\Controllers\Auth\LogOutController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MessageController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\SettingController;
 use App\Http\Controllers\StudentsController;
 use App\Http\Controllers\UsersController;
 use Illuminate\Support\Facades\Auth;
@@ -74,3 +75,9 @@ Route::get('/searchstudent/{studentsname}', [StudentsController::class, 'searchS
 // auth
 Route::post('/login', [LoginController::class, 'verifyUser'])->name('login');
 Route::get('/logout', [LogOutController::class, 'logOut'])->name('logout');
+
+// messages
+Route::post('sendgroupsms', [MessageController::class, 'sendGroupSms']);
+
+// setting
+Route::get('/setting', [SettingController::class, 'getsmsConfig']);
