@@ -2,6 +2,7 @@
 // const { default: axios } = require("axios");
 
 
+
 let studentsToNotify = [];
 
 document.getElementById('phone-number').addEventListener('input', () => {
@@ -125,7 +126,7 @@ const generateTable = (data) => {
                         </div>
                     </td>
                     <td class="p-2">
-                        <button onclick="selectStudent(${student.id},'${studentName}', ${phoneNumber})"
+                        <button onclick="selectStudent(${student.id},'${studentName}', '${phoneNumber}')"
                         class="ml-auto py-1 px-3 text-center text-xs text-white rounded-full bg-blue-400"
                         id="btn-${student.id}">
                             Select
@@ -454,6 +455,8 @@ const saveMessage = () => {
         sendButton.classList.add('pointer-events-none');
         sendButton.classList.remove('bg-blue-400');
     }
+
+    alert('Message Save');
 }
 
 const checkTextAreaValue = () => {
@@ -473,3 +476,30 @@ const checkTextAreaValue = () => {
         messageButton.classList.remove('bg-gray-400');
     }
 }
+
+const sendGroupMessages = () => {
+    // loading animation start
+    axios.post('/sendgroupsms', studentsToNotify)
+    .then(() => {
+    // loading animation stop
+        alert('sucessfully sent')
+    })
+    .catch((error) => {
+        // load modal of detailed posible error
+        showSendFailedModal()
+    })
+}
+
+const sendFailedModal = document.getElementById('send-failed')
+
+const showSendFailedModal = () => {
+    sendFailedModal.classList.remove('hidden');
+    sendFailedModal.classList.add('bg-gray-500', 'bg-opacity-70');
+}
+
+const closeSendFailedModal = () => {
+    sendFailedModal.classList.add('hidden');
+    sendFailedModal.classList.remove('bg-gray-500', 'bg-opacity-70');
+}
+
+
