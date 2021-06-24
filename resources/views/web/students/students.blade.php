@@ -67,6 +67,8 @@
 @include('include.modals.students.edit_students')
 @include('include.modals.students.notify_students')
 @include('include.modals.students.create_message')
+@include('include.modals.students.create_message')
+@include('include.modals.students.sending_failed')
 @endsection
 
 @section('jsLogic')
