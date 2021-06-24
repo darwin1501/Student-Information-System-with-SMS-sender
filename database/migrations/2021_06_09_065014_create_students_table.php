@@ -17,7 +17,7 @@ class CreateStudentsTable extends Migration
             $table->id();
             $table->foreignId('user_id');
             $table->string('students_name');
-            $table->integer('phone_number');
+            $table->string('phone_number');
             $table->string('created_by');
             $table->timestamps();
         });
