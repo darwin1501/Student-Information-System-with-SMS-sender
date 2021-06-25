@@ -6,7 +6,6 @@
     @else
       <a href="{{ route('students') }}">Students</a>
     @endif
-    <a href="#">Class</a>
   </div>
   {{-- side nav menu icon --}}
   <span class="sidenav-icon" onclick="openNav()">&#9776;</span>
