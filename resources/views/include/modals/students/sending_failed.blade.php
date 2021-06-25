@@ -9,8 +9,9 @@
                     <p>Here are possible solution to solve the problem:</p><br><br>
                     <ul>
                         <li>1. Check your internet connection.</li><br>
+                        <li>2. Your phone must have enough load to send SMS</li><br>
                         <li>2. You must connect your phone to the internet with SMS Gateway App installed on it.</li><br>
-                        <li>3 .Check your API configuration if was configured correctly at the setting.</li><br>
+                        <li>3 .Check your SMS API configuration if was configured correctly at the setting.</li><br>
                     </ul>
                 </div>
             </div>
