@@ -28,6 +28,7 @@
     @include('include.modals.profile.edit_profile')
     @include('include.modals.profile.change_password')
     @include('include.modals.setting.setting')
+    @include('include.modals.onloading.sending')
     @yield('content')
 </body>
 <script src="{{ asset('js/app.js') }}"></script>
