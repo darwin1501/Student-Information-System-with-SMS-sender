@@ -382,19 +382,36 @@ const prepareToNotify = () => {
     // console.log(studentsToNotify);
     const notifyStudentBox = document.getElementById('notify-student-box');
     let selectedStudent;
+    let selectedStudentTemplate;
     for (const students of studentsToNotify) {
-        selectedStudent = `<tr class="table-content flex" id='student-msg-${students.id}'>
-                                <td class="p-2">${students.studentsName}</td>
-                                <td class="p-2 ml-auto">
-                                <button onclick="prepareMessage(${students.id})"
-                                id="btn-msg-${students.id}"
-                                class=" py-1 px-3 text-center text-xs text-white rounded-full bg-gray-400"
-                                id="notify-btn">
-                                    Message
-                                </button>
-                                </td>
-                            </tr?`;
-        notifyStudentBox.insertAdjacentHTML('beforeend', selectedStudent)        
+
+        if(students.message !== ""){
+            // check message if there's any
+            selectedStudentTemplate = `<tr class="table-content flex" id='student-msg-${students.id}'>
+                                    <td class="p-2">${students.studentsName}</td>
+                                    <td class="p-2 ml-auto">
+                                    <button onclick="prepareMessage(${students.id})"
+                                    id="btn-msg-${students.id}"
+                                    class=" py-1 px-3 text-center text-xs text-white rounded-full bg-blue-400"
+                                    id="notify-btn">
+                                        Message
+                                    </button>
+                                    </td>
+                                </tr?`;
+        }else{
+            selectedStudentTemplate = `<tr class="table-content flex" id='student-msg-${students.id}'>
+                                    <td class="p-2">${students.studentsName}</td>
+                                    <td class="p-2 ml-auto">
+                                    <button onclick="prepareMessage(${students.id})"
+                                    id="btn-msg-${students.id}"
+                                    class=" py-1 px-3 text-center text-xs text-white rounded-full bg-gray-400"
+                                    id="notify-btn">
+                                        Message
+                                    </button>
+                                    </td>
+                                </tr?`;
+        }
+        notifyStudentBox.insertAdjacentHTML('beforeend', selectedStudentTemplate)        
     }
 }
 
@@ -478,14 +495,14 @@ const checkTextAreaValue = () => {
 }
 
 const sendGroupMessages = () => {
-    // loading animation start
+        showSendingSateModal()
     axios.post('/sendgroupsms', studentsToNotify)
     .then(() => {
-    // loading animation stop
+        closeSendingSateModal()
         alert('sucessfully sent')
     })
     .catch((error) => {
-        // load modal of detailed posible error
+        closeSendingSateModal()
         showSendFailedModal()
     })
 }
@@ -500,6 +517,18 @@ const showSendFailedModal = () => {
 const closeSendFailedModal = () => {
     sendFailedModal.classList.add('hidden');
     sendFailedModal.classList.remove('bg-gray-500', 'bg-opacity-70');
+}
+
+const sendingStateModal = document.getElementById('sending')
+
+const showSendingSateModal = () => {
+    sendingStateModal.classList.remove('hidden');
+    sendingStateModal.classList.add('bg-gray-500', 'bg-opacity-70');
+}
+
+const closeSendingSateModal = () => {
+    sendingStateModal .classList.add('hidden');
+    sendingStateModal .classList.remove('bg-gray-500', 'bg-opacity-70');
 }
 
 
