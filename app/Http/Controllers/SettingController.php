@@ -9,14 +9,27 @@ class SettingController extends Controller
 {
     public function getSmsConfig()
     {
-        $smsConfig = Setting::get()->first();
+        $smsConfig = Setting::where(['user_id' => auth()->user()->id])->get()->first();
         return $smsConfig;
     }
 
-    public function saveSetting(Setting $setting,Request $request)
+    public function saveSetting(Request $request)
     {
-        $setting->api_key = $request->json('smsApiKey');
-        $setting->device_id = $request->json('deviceId');
-        $setting->save();
+       $smsConfig = Setting::updateOrCreate(
+                ['user_id' => $request->json('userId')],
+                [
+                    'user_id' => $request->json('userId'),
+                    'api_key' => $request->json('smsApiKey'), 
+                    'device_id' => $request->json('deviceId')
+                ]
+            );
+        // $setting->api_key = $request->json('smsApiKey');
+        // $setting->device_id = $request->json('deviceId');
+        // $setting->save();
+    }
+
+    public function setSmsApiConfigStatus()
+    {
+        return count(Setting::where(['user_id' => auth()->user()->id])->get());
     }
 }
