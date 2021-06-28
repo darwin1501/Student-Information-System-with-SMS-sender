@@ -1,5 +1,13 @@
 @extends('layout.verified')
 @section('content')
+{{-- SMS API configuration status --}}
+<input type="hidden" id="sms-api-config-status">
+{{-- warning message for empty SMS API config --}}
+<div class="flex -m-8 mb-5 justify-center z-0 hidden" id="smsApi-warning">
+    <div class="bg-white w-3/4 p-4 rounded">
+        <p class="text-red-400 text-sm"><strong>Warning:&nbsp;</strong>You can't notify student for now, because the SMS API configuration was empty, configure it first at the <strong>Setting</strong> to send SMS, thank you</p>
+    </div>
+</div>
 <div class="m5 flex justify-center z-0">
     {{-- table card --}}
     <div class="card w-3/5 h-full bg-white shadow-lg p-6 rounded-lg">
