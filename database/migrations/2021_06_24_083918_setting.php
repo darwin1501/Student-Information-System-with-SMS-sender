@@ -15,6 +15,7 @@ class Setting extends Migration
     {
         Schema::create('setting', function (Blueprint $table) {
             $table->id();
+            $table->integer('user_id');
             $table->string('api_key');
             $table->integer('device_id');
             $table->timestamps();
