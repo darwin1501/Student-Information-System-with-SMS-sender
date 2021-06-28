@@ -32,9 +32,9 @@
     @yield('content')
 </body>
 <script src="{{ asset('js/app.js') }}"></script>
-{{-- js for static components --}}
-<script src="{{ asset('js/components.js') }}"></script>
 <script src="{{ asset('js/profile.js') }}"></script>
 {{-- dynamic js logic --}}
 @yield('jsLogic')
+{{-- js for static components --}}
+<script src="{{ asset('js/components.js') }}"></script>
 </html>
