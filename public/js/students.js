@@ -5,6 +5,31 @@
 
 let studentsToNotify = [];
 
+const checkSmsApiConfigStatus = () => {
+    return document.getElementById('sms-api-config-status').value;
+}
+
+const setSmsApiConfigStatus = () => {
+    const smsApiConfigStatus = document.getElementById('sms-api-config-status')
+    const smsApiWarning = document.getElementById('smsApi-warning');
+    axios.get('/setsmsapiconfigstatus')
+    .then((response) => {
+        smsApiConfigStatus.value = response.data;
+        // show / hide sms warning message according to status
+        if(response.data == 1){
+            smsApiWarning.classList.add('hidden');
+            console.log(response.data)
+        }else if(response.data == 0 || response.data == ""){
+            smsApiWarning.classList.remove('hidden');
+        }
+        console.log(response.data)
+    })
+    .catch((error) => {
+        console.log(error);
+    })
+}
+setSmsApiConfigStatus();
+
 document.getElementById('phone-number').addEventListener('input', () => {
     const target = event.target || event.srcElement;
     // prevents the phone number length from exceeding at the given max length
@@ -335,11 +360,15 @@ const selectStudent = (id,studentsName, phoneNumber ) => {
     boxOfStudent.insertAdjacentHTML('beforeend', studentsToBeAdded)  
     // disable select button after the student has been selected
     disableSelectButton(target) 
-    // enable notify button
-    notifyBtn.classList.remove('bg-gray-400');
-    notifyBtn.classList.remove('cursor-not-allowed');
-    notifyBtn.classList.remove('pointer-events-none');
-    notifyBtn.classList.add('bg-blue-400');
+
+    //enable notify button if sms api was configured at the setting
+    if(checkSmsApiConfigStatus() == 1){
+        // enable notify button
+        notifyBtn.classList.remove('bg-gray-400');
+        notifyBtn.classList.remove('cursor-not-allowed');
+        notifyBtn.classList.remove('pointer-events-none');
+        notifyBtn.classList.add('bg-blue-400');
+    } 
 }
 
 const removeOnSelected = (id) => {
