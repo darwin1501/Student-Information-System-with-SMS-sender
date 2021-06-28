@@ -1,4 +1,4 @@
-<div id="mySidenav" class="sidenav shadow-lg">
+<div id="mySidenav" class="sidenav shadow-lg z-10">
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
     @if (auth()->user()->user_type === 'admin')
       <a href="{{ route('users') }}">Users</a>
