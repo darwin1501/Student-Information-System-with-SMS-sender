@@ -81,4 +81,5 @@ Route::post('sendgroupsms', [MessageController::class, 'sendGroupSms']);
 
 // setting
 Route::get('/setting', [SettingController::class, 'getsmsConfig']);
-Route::post('/savesetting/{setting}', [SettingController::class, 'saveSetting']);
+Route::post('/savesetting', [SettingController::class, 'saveSetting']);
+Route::get('/setsmsapiconfigstatus', [SettingController::class, 'setSmsApiConfigStatus']);
