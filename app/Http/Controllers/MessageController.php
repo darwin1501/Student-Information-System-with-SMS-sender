@@ -16,7 +16,7 @@ class MessageController extends Controller
     public function sendGroupSms(Request $request)
     {
         // get sms config
-        $smsConfig = Setting::get()->first();
+        $smsConfig = Setting::where(['user_id' => auth()->user()->id])->get()->first();
     
         // Configure client
         $config = Configuration::getDefaultConfiguration();
