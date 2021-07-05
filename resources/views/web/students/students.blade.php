@@ -13,11 +13,18 @@
     <div class="card w-3/5 h-full bg-white shadow-lg p-6 rounded-lg">
         {{-- add user --}}
         <div class="flex justify-center">
-            <input type="text" id="search-username" class="p-1 w-2/3 border-b-2 border-gray-400 text-center text-xs" 
+            <input type="text" id="search-username" class="p-1 w-2/3 border-b-2 border-gray-400 mr-3 text-center text-xs" 
             placeholder="Search Name" oninput="searchStudent()">
+            {{-- import student --}}
+            <button onclick="openImportXlsModal()"
+                class="ml-auto mr-2 py-1 w-1/4 px-3 text-center text-xs text-white rounded-full bg-blue-400">
+                +&nbsp;Import Student
+            </button>
+            {{-- add student --}}
             <button onclick="showAddStudentModal()"
                 class="ml-auto py-1 px-3 text-center text-xs text-white rounded-full bg-blue-400">
                 +&nbsp;Student
+            </button>
         </div>
         <div class="flex justify-center mt-5">
             <table id="table" class=" font-sans table-auto p-2 text-xs w-full text-center">
@@ -33,7 +40,7 @@
                 </thead>
                 <tbody id="tbl-main-content">
                 </tbody>
-                </table>
+            </table>
         </div>
         <p id="no-result" class="hidden mt-4 font-bold text-center text-sm">No Results Found</p>
         <p id="empty-students" class="hidden mt-4 font-bold text-center text-sm">No students added yet.</p>
@@ -77,8 +84,16 @@
 @include('include.modals.students.create_message')
 @include('include.modals.students.create_message')
 @include('include.modals.students.sending_failed')
+@include('include.modals.importing.import_xls')
+{{-- animation --}}
+@include('include.modals.importing.importing')
 @endsection
 
 @section('jsLogic')
 <script src="{{ asset('js/students.js') }}"></script>
+<script src="{{ asset('js/import_xls.js') }}"></script>
+@endsection
+
+@section('sheet-js')
+<script src="{{ asset('js/xlsx.full.min.js') }}"></script>
 @endsection
