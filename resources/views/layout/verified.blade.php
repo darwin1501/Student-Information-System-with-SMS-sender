@@ -17,6 +17,7 @@
     <link href="{{ asset('css/custom.css') }}" rel="stylesheet">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <title>Grade Sender</title>
+    @yield('sheet-js')
 </head>
 <body class="bg-gray-200">
     {{-- set user id --}}
