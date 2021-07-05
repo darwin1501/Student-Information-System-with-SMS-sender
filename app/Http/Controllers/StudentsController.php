@@ -28,7 +28,7 @@ class StudentsController extends Controller
 
         return 'success';
     }
-
+    
     public function getStudents()
     {
         $students = Students::latest()->paginate(4);
