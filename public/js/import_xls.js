@@ -96,6 +96,9 @@ btnImport.addEventListener('click',()=> {
                         document.getElementById('imported_info').innerHTML = `Import Success, you imported ${studentsCount}
                          ${studentsCount > 1 ? ' Students':' Student'}`;
                         showImportSuccessModal();
+                        // clear input file
+                        fileUploadInput.value = null;
+                        disableImportBtn();
                     })
                     .catch((error) => {
                         console.log(error);
@@ -103,6 +106,7 @@ btnImport.addEventListener('click',()=> {
                         // clear input file
                         fileUploadInput.value = null;
                         showImportFailedModal();
+                        disableImportBtn();
                         return false;
                         // alert('import failed')
                         // load modal instead of alert
