@@ -1,4 +1,4 @@
-# Student Messenger
+# Student Information System With SMS Sender
 
 ## Description
 
