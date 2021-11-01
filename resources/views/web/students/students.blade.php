@@ -85,6 +85,8 @@
 @include('include.modals.students.create_message')
 @include('include.modals.students.sending_failed')
 @include('include.modals.importing.import_xls')
+@include('include.modals.import_message.import_failed')
+@include('include.modals.import_message.import_success')
 {{-- animation --}}
 @include('include.modals.importing.importing')
 @endsection

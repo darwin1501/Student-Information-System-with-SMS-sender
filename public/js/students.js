@@ -560,4 +560,28 @@ const closeSendingSateModal = () => {
     sendingStateModal .classList.remove('bg-gray-500', 'bg-opacity-70');
 }
 
+const importFailedModal = document.getElementById('import_msg_failed');
+
+const showImportFailedModal = (()=>{
+    importFailedModal.classList.remove('hidden');
+    importFailedModal.classList.add('bg-gray-500', 'bg-opacity-70');
+})
+
+const clcoseImportFailedModal = (()=>{
+    importFailedModal.classList.add('hidden');
+    importFailedModal.classList.remove('bg-gray-500', 'bg-opacity-70');
+})
+
+const importSuccessModal = document.getElementById('import_msg_success');
+
+const showImportSuccessModal = (()=>{
+    importSuccessModal.classList.remove('hidden');
+    importSuccessModal.classList.add('bg-gray-500', 'bg-opacity-70');
+})
+
+const clcoseImportSuccessModal = (()=>{
+    importSuccessModal.classList.add('hidden');
+    importSuccessModal.classList.remove('bg-gray-500', 'bg-opacity-70');
+})
+
 

@@ -2,7 +2,9 @@
 
 let selectedFile
 
-const importingAnimation = document.getElementById('importing')
+const importingAnimation = document.getElementById('importing');
+const btnImport = document.getElementById('uploadExcel');
+const fileUploadInput = document.getElementById('fileUpload');
 
 const showImportingAnimation = () => {
     importingAnimation .classList.remove('hidden');
@@ -14,12 +16,39 @@ const closeImportingAnimation = () => {
     importingAnimation.classList.remove('bg-gray-500', 'bg-opacity-70');
 }
 
-document.getElementById('fileUpload').addEventListener('change',(event)=> {
-     selectedFile = event.target.files[0];
-    console.log(selectedFile)
+const enableImportBtn = (()=>{
+    btnImport.classList.remove('cursor-not-allowed','pointer-events-none', 'bg-gray-400');
+    btnImport.classList.add('bg-blue-400');
 })
 
-document.getElementById('uploadExcel').addEventListener('click',()=> {
+const disableImportBtn = (()=>{
+    btnImport.classList.add('cursor-not-allowed','pointer-events-none', 'bg-gray-400');
+    btnImport.classList.remove('bg-blue-400');
+})
+
+// disable import button by default
+disableImportBtn()
+
+fileUploadInput.addEventListener('change',(event)=> {
+     selectedFile = event.target.files[0];
+    const fileFormat = selectedFile.name.split('.')[1];
+    console.log(fileFormat)
+    if(fileFormat === 'xls' || fileFormat === 'xlsx'){
+        // valid file
+        // enable import button
+        enableImportBtn();
+    }else{
+        // invalid file
+        // disable import button
+        disableImportBtn();
+        // reset input file
+        fileUploadInput.value = null;
+        alert("Can't load file, because of Invalid File Format. Valid file formats are .xls, .xlsx")
+        // 
+    }
+})
+
+btnImport.addEventListener('click',()=> {
     // start importing animation
     showImportingAnimation();
 
@@ -39,6 +68,8 @@ document.getElementById('uploadExcel').addEventListener('click',()=> {
                 );
                 // converted to JSON
                 let students = JSON.parse(JSON.stringify(rowObjejct));
+                let studentsCount = Object.keys(students).length;
+                        
                 // for testing
                 // document.getElementById("jsonData").innerHTML = jsonObject;
 
@@ -56,17 +87,27 @@ document.getElementById('uploadExcel').addEventListener('click',()=> {
                         phoneNumber:student.PhoneNumber
                     })
                     .then((response) => {
-                        // stop importing animation
-                        closeImportingAnimation();
                         // reload the table
                         getStudents();
-
+                        closeImportingAnimation();
+                        // clear input file
+                        fileUploadInput.value = null;
+                        // set the total number of imported data
+                        document.getElementById('imported_info').innerHTML = `Import Success, you imported ${studentsCount}
+                         ${studentsCount > 1 ? ' Students':' Student'}`;
+                        showImportSuccessModal();
                     })
                     .catch((error) => {
                         console.log(error);
+                        closeImportingAnimation();
+                        // clear input file
+                        fileUploadInput.value = null;
+                        showImportFailedModal();
+                        return false;
+                        // alert('import failed')
+                        // load modal instead of alert
                     })
-                }
-                // 
+                }               
             });
         };
         fileReader.readAsBinaryString(selectedFile);
