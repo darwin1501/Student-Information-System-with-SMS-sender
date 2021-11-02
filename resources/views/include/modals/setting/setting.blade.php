@@ -17,7 +17,7 @@
                     <p class="mb-2 text-xs">Device ID</p>
                         <input type="text" name="smstoken" class="bg-gray-200 mb-2 p-2 rounded-lg text-center w-1/4" 
                             id="device-id" required placeholder="Device ID"><br><br>
-                    <p class="mb-2 text-xs">Get API key and Device ID after you register here <a class="cursor-pointer text-blue-400 text center">https://https://smsgateway.me/register</a></p>
+                    <p class="mb-2 text-xs">Get API key and Device ID after you register here <a href="https://smsgateway.me/register" target="_blank" class="cursor-pointer text-blue-400 text center">https://smsgateway.me/register</a></p>
                     <div class="flex justify-center mb-2 mt-6">
                         <button class="bg-blue-400 p-1 rounded-lg text-center text-white w-2/4">Save Changes</button>
                     </div>
