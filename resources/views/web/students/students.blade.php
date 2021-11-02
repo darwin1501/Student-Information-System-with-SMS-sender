@@ -87,6 +87,7 @@
 @include('include.modals.importing.import_xls')
 @include('include.modals.import_message.import_failed')
 @include('include.modals.import_message.import_success')
+@include('include.modals.importing.import_guides')
 {{-- animation --}}
 @include('include.modals.importing.importing')
 @endsection

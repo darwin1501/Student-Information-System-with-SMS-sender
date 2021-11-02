@@ -584,4 +584,14 @@ const clcoseImportSuccessModal = (()=>{
     importSuccessModal.classList.remove('bg-gray-500', 'bg-opacity-70');
 })
 
+const importingGuides = document.getElementById('import_guides');
 
+const showImportGuideModal = (()=>{
+    importingGuides.classList.remove('hidden');
+    importingGuides.classList.add('bg-gray-500', 'bg-opacity-70');
+})
+
+const closeImportGuideModal = (()=>{
+    importingGuides.classList.add('hidden');
+    importingGuides.classList.remove('bg-gray-500', 'bg-opacity-70');
+})
