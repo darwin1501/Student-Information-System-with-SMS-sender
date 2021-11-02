@@ -32,7 +32,7 @@ disableImportBtn()
 fileUploadInput.addEventListener('change',(event)=> {
      selectedFile = event.target.files[0];
     const fileFormat = selectedFile.name.split('.')[1];
-    console.log(fileFormat)
+    // check if file was excel format
     if(fileFormat === 'xls' || fileFormat === 'xlsx'){
         // valid file
         // enable import button
@@ -68,19 +68,10 @@ btnImport.addEventListener('click',()=> {
                 );
                 // converted to JSON
                 let students = JSON.parse(JSON.stringify(rowObjejct));
+                // get total data to be imported
                 let studentsCount = Object.keys(students).length;
                         
-                // for testing
-                // document.getElementById("jsonData").innerHTML = jsonObject;
-
-                // (future updates)
-                //check the data if formatted correctly e.g StudentsName PhoneNumber
-                // then insert data to students database
-
-
-                // run for each
                 for (const student of students) {
-                    // console.log(student.StudentsName);
                     // call a route here to insert students
                     axios.post('/addstudent',{
                         studentName:student.StudentsName,
@@ -108,8 +99,6 @@ btnImport.addEventListener('click',()=> {
                         showImportFailedModal();
                         disableImportBtn();
                         return false;
-                        // alert('import failed')
-                        // load modal instead of alert
                     })
                 }               
             });
